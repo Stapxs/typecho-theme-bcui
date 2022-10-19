@@ -1,0 +1,380 @@
+html, body {
+    height: 100%;
+}
+html {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+body {
+    background-color: var(--color-bg) !important;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+footer a {
+    text-decoration: underline !important;
+    color: var(--color-main) !important;
+}
+
+.body {
+    flex: 1;
+}
+
+.nav-bar {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 5px var(--color-shader);
+    margin-top: 20px;
+    border-radius: 7px;
+    background: var(--color-card);
+    margin-bottom: 20px;
+}
+
+.top-bar {
+    --height:60vh;
+    height: var(--height);
+    background: url(https://api.stapxs.cn/PicLib/Desktop) center;
+    background-size: 100%, auto;
+}
+
+.top-bar > div:first-child {
+    width: 100%;
+    height: 100%;
+    background: var(--color-bg);
+    opacity: 0.5;
+}
+.top-bar > div:last-child {
+    position: absolute;
+    top: 0;
+    height: var(--height);
+    width: 100%;
+}
+
+.top-bar-title {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.top-bar-title p {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--color-font-1);
+    margin-bottom: 5px;
+}
+.top-bar-title span {
+    font-size: 1rem;
+    color: var(--color-font-1);
+}
+@media (max-width: 992px) {
+    .nav-bar {
+        margin-top: 0;
+        border-radius: 0;
+    }
+}
+
+.bar-search {
+    height: 35px;
+    font-size: 15px;
+    border: 0 !important;
+    margin-right: 0 !important;
+    border-radius: 7px !important;
+    background: var(--color-card-1);
+}
+
+.pin {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    margin: 20px 0;
+    padding: 5px;
+}
+.pin::-webkit-scrollbar {
+    height: 0;
+}
+.pin > div:hover .pin-img {
+    transform: translate(0);
+}
+.pin > div {
+    min-width: calc(100% / 2 - 10px);
+    display: flex;
+    flex-direction: row;
+    height: 180px;
+    padding: 0;
+    margin-right: 20px;
+    overflow: hidden;
+}
+.pin-img {
+    height: 100%;
+    border-radius: 7px 50% 50% 7px;
+    min-width: 180px;
+    max-width: 180px;
+    transform: translate(-20px);
+    transition: transform 0.3s;
+    background-size: auto 100% !important;
+    background-position: 75%!important;
+}
+.pin > div > div {
+    flex: 1;
+    padding: 20px;
+    overflow: hidden;
+}
+.pin > div > div > a {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: var(--color-font);
+}
+.pin > div > div > a > svg {
+    height: 1rem;
+    display: inline-block;
+    margin-right: 10px;
+    fill: var(--color-font-1);
+}
+.pin > div > div > div {
+    padding: 0;
+    height: 4.9rem;
+    margin-bottom: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.pin > div > div > div > span {
+    font-size: .9rem;
+    color: var(--color-font-2);
+}
+.pin > div > div > div img {
+    max-height: 25px;
+    max-width: 25px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.pin > div > div > div a {
+    font-size: 0.9rem;
+    color: var(--color-font-2);
+    opacity: 0.8;
+}
+
+.art-list {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    margin-top: 40px;
+}
+.art-body {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    height: 40vh;
+    margin-bottom: 20px;
+}
+.art-body:hover > div:last-child {
+    border-bottom: 2px solid var(--color-main);
+}
+.art-body:hover > div:first-child div {
+    transform: rotate(6deg);
+}
+.art-body > div:first-child {
+    min-width: 35vh;
+    min-height: 35vh;
+    border-radius: 7px;
+    background: var(--color-main);
+    margin: calc(5vh / 2);
+    background: var(--color-card-2);
+}
+.art-body > div:first-child div {
+    height: 35vh;
+    width: 35vh;
+    background: var(--color-card-2);
+    border-radius: 7px;
+    transition: all .3s;
+    background-color: var(--color-card) !important;
+}
+.art-body > div:last-child {
+    color: var(--color-font);
+    margin-left: 60px;
+    margin-right: 30px;
+    background: var(--color-card);
+    border-radius: 7px;
+    padding: 20px;
+    border-bottom: 2px solid transparent;
+    transition: border .3s;
+    flex: 1;
+}
+
+.art-body > div:last-child div:first-child {
+    background: var(--color-main);
+    height: 40px;
+    margin: 0 -20px 20px -40px;
+    border-radius: 2px 0 0 2px;
+}
+.art-body > div:last-child div:first-child svg {
+    height: 40px;
+    float: right;
+    transform: translateX(30px);
+}
+.art-body > div:last-child > div:not(:first-child) {
+    height: calc(40vh - 3rem - 165px);
+    overflow: hidden;
+    margin: 0 10px 20px;
+}
+.art-body > div:last-child > a {
+    font-size: 1.1rem;
+    font-weight: bold;
+    line-height: 1.5rem;
+    border-left: 1.4rem solid var(--color-main);
+    padding-left: 10px;
+    color: var(--color-font);
+    margin-bottom: 10px;
+    display: inline-block;
+}
+.art-body > div:last-child > div > span {
+    color: var(--color-font-2);
+}
+.art-body > div:last-child > div:last-child {
+    height: auto;
+    overflow: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.art-body > div:last-child > div:last-child img {
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 2px solid var(--color-main);
+    outline: 6px solid var(--color-card-2);
+    margin: 6px 20px 6px 6px;
+}
+.art-body > div:last-child > div:last-child div.info {
+    font-size: 0.9rem;
+    color: var(--color-font-1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+}
+.art-body > div:last-child > div:last-child div.category span a {
+    color: var(--color-font-2);
+    font-size: 0.8rem;
+}
+.art-body > div:last-child > div:last-child div.category svg {
+    margin-left: 5px;
+    fill: var(--color-font-1);
+    height: 0.9rem;
+}
+
+.say-body {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0 30px 20px;
+}
+.say-body:hover div:nth-child(2) {
+    margin-left: 0;
+    border-right: 2px solid var(--color-main);
+}
+.say-body > div:nth-child(1) {
+    width: 50px;
+    background: var(--color-main);
+    height: 35px;
+    border-radius: 4px 0 0 4px;
+    text-align: center;
+}
+.say-body > div:nth-child(1) svg {
+    fill: var(--color-font-r);
+    height: calc(100% - 20px);
+    margin: 10px;
+ }
+.say-body > div:nth-child(2) {
+    background: var(--color-card);
+    height: 60px;
+    border-radius: 7px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    margin-left: -40px;
+    border-right: 2px solid transparent;
+    transition: margin .3s, border .3s;
+}
+.say-body > div:nth-child(2) span {
+    color: var(--color-font-2);
+    margin-right: 20px;
+}
+.say-body > div:nth-child(2) span:first-child {
+    color: var(--color-font-1);
+    flex: 1;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.say-body > div:nth-child(2) span:first-child span {
+    margin-right: 0;
+    color: var(--color-main);
+}
+.say-body > div:nth-child(2) img {
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 2px solid var(--color-main);
+    outline: 6px solid var(--color-card-2);
+}
+
+.controller {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+.controller button {
+    width: 40px;
+    height: 40px;
+    background: var(--color-card);
+    transition: background .3s;
+    padding: 15px;
+}
+.controller button:hover {
+    background: var(--color-main);
+}
+.controller button:hover svg {
+    fill: var(--color-font-r);
+}
+.controller button > svg {
+    margin-top: -15px;
+    fill: var(--color-font-1);
+}
+.controller > div {
+    background: var(--color-card);
+    border-radius: 7px;
+    height: 40px;
+    padding: 0 40px;
+    margin: 0 10px;
+    line-height: 40px;
+    font-weight: bold;
+    color: var(--color-font);
+}
+
+@media (max-width: 992px) {
+    .pin {
+        flex-wrap: wrap;
+    }
+    .pin > div {
+        min-width: 100%;
+        margin-bottom: 10px;
+    }
+    .top-bar {
+        background-size: auto, 100%;
+    }
+}
+@media (max-width: 768px) {
+    .art-body > div:first-child {
+        display: none;
+    }
+    .art-body > div:last-child {
+        margin-left: 40px;
+    }
+}

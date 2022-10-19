@@ -1,0 +1,81 @@
+.comment-bar {
+    background: var(--color-main);
+    border-radius: 20px;
+    margin: 10px 0;
+    height: 20px;
+}
+
+.comment-respond-top {
+    margin-top: -10px;
+    display: flex;
+    height: 20px;
+}
+.comment-respond-top > div.space {
+    flex: 1;
+}
+.comment-respond-top > div.middle {
+    width: 50%;
+}
+.comment-respond-top > div.show {
+    background: var(--color-main);
+    border-radius: 0 0 7px 7px;
+    width: 20px;
+}
+
+.comment-respond-body {
+    border-top: 5px solid var(--color-main);
+    margin-top: -3px;
+}
+
+.comment-login-info span {
+    font-size: 1.1rem;
+    font-weight: bold;
+    flex: 1;
+}
+.comment-login-info.login {
+    box-shadow: none !important;
+    background: transparent;
+    align-items: center;
+    padding: 10px 20px;
+    display: flex;
+}
+.comment-login-info.login img {
+    outline: 3px solid var(--color-main);
+    border: 1px solid var(--color-card);
+    border-radius: 100%;
+    height: 35px;
+    width: 35px;
+}
+.comment-login-info.login > div {
+    flex-direction: column;
+    margin-right: 10px;
+    text-align: end;
+    display: flex;
+}
+.comment-login-info.login > div a {
+    color: var(--color-font-2);
+    font-size: 0.8rem;
+}
+.comment-login-info.login > div a.name {
+    color: var(--color-font);
+    font-weight: bold;
+    font-size: 1rem;
+}
+.comment-login-info.unlogin {
+    background: var(--color-card-1);
+    border-radius: 7px;
+    padding: 20px;
+}
+.comment-login-info.unlogin > div {
+    display: flex;
+}
+.comment-login-info.unlogin > div p {
+    width: 50%;
+}
+.comment-login-info.unlogin p {
+    margin-bottom: 0;
+    padding: 0 10px;
+}
+.comment-login-info.unlogin input {
+    border-radius: 7px;
+}
