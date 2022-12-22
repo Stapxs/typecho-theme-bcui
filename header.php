@@ -26,6 +26,8 @@
 
     <link rel="stylesheet" href="<?php $this->options->themeUrl('src/css/index.css')?>">
     <link rel="stylesheet" href="<?php $this->options->themeUrl('src/css/article.css')?>">
+    
+    <script src="<?php $this->options->themeUrl('src/js/index.js')?>"></script>
 
     <!-- 通过自有函数输出HTML头部信息 -->
     <?php $this->header(); ?>
@@ -87,7 +89,9 @@
         <div>
             <div class="top-bar-title">
                 <p id="title"><?php $this->options->title() ?></p>
-                <span id="ana">这是语录</span>
+                <span id="ana" data-ana="<?php Typecho_Widget::widget('Widget_Options')->ana(); ?>">
+                    这是语录
+                </span>
             </div>
         </div>
     </div>

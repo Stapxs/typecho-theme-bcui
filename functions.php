@@ -111,6 +111,15 @@ function themeConfig($form)
         _t('颜色模式'),
         _t('默认将跟随系统颜色模式，也可以自己指定。'));
     $form->addInput($darkmode);
+
+    $ana = new Typecho_Widget_Helper_Form_Element_Text(
+        'ana',
+        null,
+        null,
+        _t('顶栏语录'),
+        _t('需要填写一个只返回纯文本的 API。也可以b不要啦 ……')
+    );
+    $form->addInput($ana);
 }
 
 /*

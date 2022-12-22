@@ -25,7 +25,7 @@
         </div>
         <div itemprop="keywords" class="tags comment-tags">
             <div>
-                <?php $this->tags('</div><div>', true, 'none'); ?>
+                <?php $this->tags('</div><div>', true, '<script>document.getElementsByClassName("tags comment-tags")[0].style.display = "none"</script>'); ?>
             </div>
         </div>
         <div class="main">
@@ -34,7 +34,7 @@
                 $content = $this->content;
                 // 为 H 标签添加 id 方便目录跳转
                 $content = preg_replace(
-                    '/<(h[1-6])>([^<>]+)<\/h[1-6]>/m',
+                    '/<(h[1-6])>(.+?)<\/h[1-6]>/m',
                     '<${1} id="toc-${2}">${2}</${1}>',
                     $content
                 );

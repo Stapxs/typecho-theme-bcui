@@ -222,34 +222,41 @@ body {
     margin-right: -10px;
     padding: 10px 40px 25px 0;
     margin-bottom: 20px;
-    width: calc(100% + 50px);
+    width: calc(100% + 40px);
 }
-.content-body li {
-    color: var(--color-font-1);
+.content-body > div:last-child {
+    margin-bottom: 0 !important;
 }
-.content-body li::marker {
-    color: transparent;
-}
-.content-body > li {
-    margin: -40px 0;
-}
-/* 隐藏第二层以下的目录（用不着显示那么多层级） */
-.comment-body > li > ul {
-    display: none !important;
-}
-.content-body li > a {
-    color: var(--color-font);
-    white-space: nowrap;
-    padding: 0 20px;
-    line-height: 40px;
+.content-body > div {
     border-radius: 7px;
-    display: block;
-    border-left: 7px solid transparent;
-    transition: all .3s;
+    padding: 10px 20px;
+    margin-bottom: 5px;
 }
-.content-body ul {
-    padding-left: 0;
-    overflow: hidden;
+.content-body > div > a {
+    color: var(--color-font);
+}
+.content-body > div.lvo {
+
+}
+.content-body > div.lvo.select {
+    background: var(--color-main);
+}
+.content-body > div.lvo.select > a {
+    color: var(--color-font-r);
+}
+.content-body > div.lvt {
+    transition: all .1s;
+    transform: scaleY(1);
+    transform-origin: top center;
+}
+.content-body > div.lvt.setsmall {
+    height: 0;
+    transform: scaleY(0);
+    padding: 0;
+    margin-bottom: 0;
+}
+.content-body > div.lvt.select {
+    background: var(--color-card-1);
 }
 .li-a-show {
     border-left: 7px solid var(--color-main) !important;
@@ -585,15 +592,13 @@ body {
 }
 
 .comment-body {
-    background: var(--color-card);
+    margin-top: -20px;
     border-radius: 7px;
     margin-bottom: 20px;
     padding: 0 30px 30px 30px;
-    margin-top: -20px;
+    background: var(--color-card);
 }
-.content-body > div:last-child {
-    margin-bottom: 0 !important;
-}
+
 .comment-main {
     display: flex;
     background: var(--color-card-1);

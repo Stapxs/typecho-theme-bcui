@@ -33,8 +33,63 @@ window.onscroll = function() {
     }
 }
 
+let io = new IntersectionObserver(hInView, {
+    rootMargin: '0px 0px -80% 0px'
+})
+let updateLock = false
+function hInView (event) {
+    const info = event[0]
+    // 进入
+    if(info.isIntersecting && !updateLock) {
+        updateLock = true
+        const list = document.getElementById('content-body').childNodes
+        for(let i=0; i<list.length; i++) {
+            const item = list[i]
+            if(info.target.id === item.dataset.id) {
+                console.log(info.target.id + ' / ' + item.dataset.id)
+                item.classList.add('select')
+                if(item.className.indexOf('lvt') >= 0) {
+                    item.classList.remove('setsmall')
+                    // H2 需要向前寻找它的 H1
+                    // 同时将路过的 H2 全部展开
+                    for(let j=i-1; j>=0; j--) {
+                        if(list[j].className.indexOf('lvo') >= 0) {
+                            list[j].classList.add('select')
+                            break   // 找到了就可以退出了
+                        } else {
+                            list[j].classList.remove('setsmall')
+                        }
+                    }
+                    // 向下寻找 H1 将路过的 H2 展开
+                    for(let j=i+1; j<list.length; j++) {
+                        if(list[j].className.indexOf('lvt') >= 0) {
+                            list[j].classList.remove('setsmall')
+                        } else {
+                            break
+                        }
+                    }
+                }
+            } else {
+                item.classList.remove('select')
+                if(item.className.indexOf('lvt') >= 0) {
+                    item.classList.add('setsmall')
+                }
+            }
+        }
+        updateLock = false
+    }
+}
+
 window.onload = function () {
     createTOC()
+    // 进行目录监听
+    const list = document.getElementById('content-body').childNodes
+    list.forEach((item) => {
+        const dom = document.getElementById(item.dataset.id)
+        if(dom !== null) {
+            io.observe(document.getElementById(item.dataset.id))
+        }
+    })
 }
 
 function barController() {
@@ -91,36 +146,50 @@ function createTOC () {
         }
     }
     // 创建目录
-    maxShow = 3         // 最大显示级别
-    startLevel = 0
-    lastLevel = 0
-    let html = ''
-    for (i = 0; i < show.length; i++) {
-        const level = tags.indexOf(show[i].nodeName) + 1
-        if(level > startLevel && level < maxShow) {
-            if(level > lastLevel) {
-                html += ''
-            } else if (level < lastLevel) {
-                html += (new Array(lastLevel - level + 2)).join("</ul></li>")
-            } else {
-                html += "</ul></li>"
+    if(show.length > 0) {
+        const div = document.createElement('div')
+        div.id = 'content-body'
+        div.className = 'content-body'
+        // PS：用于记录上一个目录项的等级
+        let last = 0
+        for (i = 0; i < show.length; i++) {
+            const item = show[i]
+            const level = tags.indexOf(item.nodeName) + 1
+            // 只构建两层
+            if(level <= 2) {
+                // 构建目录项
+                const body = document.createElement('div')
+                body.dataset.id = item.id
+                const a = document.createElement('a')
+                a.innerText = item.innerText
+                a.href = '#' + item.id
+                // PS：第一个如果不是 H1 就不显示，直到遇到第一个 H1
+                if(last == 0 && level != 1) {
+                    body.style.display = 'none'
+                    break
+                }
+                if(level == 1) {
+                    body.className = 'lvo'
+                }
+                if(level == 2) {
+                    body.className = 'lvt setsmall'
+                }
+                last = level
+                // 添加
+                body.appendChild(a)
+                div.appendChild(body)
             }
-            html += "<li><a class=\"toc-level-" + level + "\" href=\"#toc-" + show[i].innerText + "\">" + show[i].innerText + "</a><ul>"
-            lastLevel = level
         }
+        // 添加
+        document.getElementById('content').append(div)
+        // 创建进度条
+        const bar = document.createElement('div')
+        bar.className = 'content-progress'
+        bar.id = 'content-progress'
+        document.getElementById('content').append(bar)
+        // 显示
+        changeContent()
     }
-    // 添加
-    const body = document.createElement('div')
-    body.className = 'content-body'
-    body.innerHTML = html
-    document.getElementById('content').append(body)
-    // 创建进度条
-    const bar = document.createElement('div')
-    bar.className = 'content-progress'
-    bar.id = 'content-progress'
-    document.getElementById('content').append(bar)
-    // 显示
-    changeContent()
 }
 
 function changeContent() {

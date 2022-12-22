@@ -79,6 +79,7 @@ footer a {
     height: 35px;
     font-size: 15px;
     border: 0 !important;
+    padding: 0 10px !important;
     margin-right: 0 !important;
     border-radius: 7px !important;
     background: var(--color-card-1);
