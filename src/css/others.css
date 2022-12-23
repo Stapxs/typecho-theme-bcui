@@ -1,0 +1,32 @@
+.archive-title {
+    margin-bottom: 30px;
+}
+.archive-title > div.title {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.archive-title > div.title > span {
+    color: var(--color-font-2);
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+.archive-title > div.title > span > span {
+    color: var(--color-main);
+    font-size: 1.6rem;
+    margin: 0 10px;
+}
+/* .archive-title > div.bg-left {
+    width: calc(100px + 10%);
+    background: var(--color-main);
+    margin: -200px 0 -200px -100px;
+    transform: rotate(30deg);
+    border: 10px solid var(--color-card-2);
+}
+.archive-title > div.bg-right {
+    width: calc(100px + 10%);
+    background: var(--color-main);
+    margin: -200px -100px -200px 0;
+    transform: rotate(30deg);
+    border: 10px solid var(--color-card-2);
+} */

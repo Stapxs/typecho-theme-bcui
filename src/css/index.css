@@ -10,6 +10,10 @@ body {
     height: 100%;
     display: flex;
     flex-direction: column;
+    color: var(--color-font);
+}
+a {
+    color: var(--color-font);
 }
 
 footer a {
@@ -169,6 +173,9 @@ footer a {
     align-items: stretch;
     height: 40vh;
     margin-bottom: 20px;
+}
+.art-body.right {
+    flex-direction: row-reverse;
 }
 .art-body:hover > div:last-child {
     border-bottom: 2px solid var(--color-main);
@@ -357,6 +364,38 @@ footer a {
     line-height: 40px;
     font-weight: bold;
     color: var(--color-font);
+}
+
+.no-found-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+    margin: 0 auto;
+    padding: 30px 40px;
+    margin-top: 50%;
+    transform: translateY(-50%);
+}
+.no-found-card > svg {
+    fill: var(--color-font);
+    width: 45px;
+    margin-bottom: 5px;
+}
+.no-found-card > span {
+    color: var(--color-main);
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+.no-found-card > a {
+    color: var(--color-font-1);
+    font-size: 0.8rem;
+}
+.no-found-card > a:last-child {
+    margin-top: 20px;
+    background: var(--color-main);
+    color: var(--color-font-r);
+    border-radius: 7px;
+    padding: 5px 80px;
 }
 
 @media (max-width: 992px) {

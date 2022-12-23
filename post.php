@@ -67,9 +67,9 @@
                 <?php } ?>
             <?php endif; ?>
             <div class="fov">
-                <span>&lt;&nbsp;&nbsp;<?php $this->thePrev('%s', '没有了'); ?></span>
+                <span>&lt;&nbsp;&nbsp;<?php $this->thePrev('%s', '<a>没有了</a>'); ?></span>
                 <div></div>
-                <span><?php $this->theNext('%s', '没有了'); ?>&nbsp;&nbsp;&gt;</span>
+                <span><?php $this->theNext('%s', '<a>没有了</a>'); ?>&nbsp;&nbsp;&gt;</span>
             </div>
         </div>
         <div class="art-body" style="margin: 0;height: auto;">

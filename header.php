@@ -26,6 +26,7 @@
 
     <link rel="stylesheet" href="<?php $this->options->themeUrl('src/css/index.css')?>">
     <link rel="stylesheet" href="<?php $this->options->themeUrl('src/css/article.css')?>">
+    <link rel="stylesheet" href="<?php $this->options->themeUrl('src/css/others.css')?>">
     
     <script src="<?php $this->options->themeUrl('src/js/index.js')?>"></script>
 
@@ -51,6 +52,11 @@
             <div class="navbar-nav mr-auto">
                 <a class="nav-item nav-link <?php if ($this->is('index')): ?>active<?php endif; ?>"
                     href="<?php $this->options->siteUrl(); ?>"><?php _e('主页'); ?></a>
+                <?php Widget\Metas\Category\Rows::alloc()->to($category); ?>
+                <?php while ($category->next()): ?>
+                    <a class="nav-item nav-link <?php if ($this->is('category', $category->slug)): ?>active<?php endif; ?>"
+                        href="<?php $category->permalink(); ?>"><?php $category->name(); ?></a>
+                <?php endwhile; ?>
                 <?php \Widget\Contents\Page\Rows::alloc()->to($pages); ?>
                 <?php while ($pages->next()): ?>
                     <a class="nav-item nav-link <?php if ($this->is('page', $pages->slug)): ?>active<?php endif; ?>"
@@ -85,7 +91,13 @@
 </nav>
 
 <div class="body">
-    <?php if (!$this->is('post')): ?>
+    <?php
+        // 获取页面类型，以及页面类型的参考见： /var/Widget/Archive.php@L1606、L617
+        // 主要是 is 不能用于判断 404 ……
+    ?>
+    <?php if (!$this->is('post') &&
+                !$this->is('category') &&
+                $this->parameter->type != 404): ?>
     <div class="top-bar">
         <div></div>
         <div>

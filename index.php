@@ -45,6 +45,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit; $this->need('header.php'); ?>
 
         <!-- >>>> 文章列表主体 -->
         <div id="main-list" class="art-list">
+        <?php $isLeft = true; ?>
         <?php while ($this->next()): ?>
             <?php
                 // 取出所有的 tag 名，用来单独筛出短日记
@@ -65,7 +66,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit; $this->need('header.php'); ?>
                 </div>
             </div>
             <?php else: ?>
-            <div class="art-body">
+            <div class="art-body<?php if(!$isLeft){echo ' right';}$isLeft=!$isLeft; ?>">
                 <div>
                     <div style="background: url(<?php showThumbnail($this); ?>) center;"></div>
                 </div>

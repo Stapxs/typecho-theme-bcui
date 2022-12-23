@@ -4,7 +4,7 @@
 </div>
 
 <footer class="container-lg" style="margin-top: 20px">
-    <div class="ss-card" style="margin: 0 -15px">
+    <div class="ss-card" style="margin: 0 -15px 20px -15px">
         <header><?php $this->options->title(); ?>
             <span>
             Theme <a href="https://stapxs.cn">BCUI</a> • Engine <a href="http://www.typecho.org">Typecho</a>

@@ -494,6 +494,10 @@ body {
 }
 .more-card > div:first-child a {
     color: var(--color-font);
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .more-card > div:first-child > span:nth-child(1) {
     font-size: 2rem;
@@ -524,9 +528,12 @@ body {
 }
 .more-card > div:first-child > div.fov > span {
     font-size: 0.8rem;
+    display: flex;
+    overflow: hidden;
 }
 .more-card > div:first-child > div.fov > div {
     flex: 1;
+    min-width: 3rem;
 }
 .more-card > div:last-child {
     flex: 1;
