@@ -66,10 +66,15 @@
                 <a href="<?= $v['url'] ?>"><?= $v['title'] ?></a>
                 <?php } ?>
             <?php endif; ?>
+            <div class="fov">
+                <span>&lt;&nbsp;&nbsp;<?php $this->thePrev('%s', '没有了'); ?></span>
+                <div></div>
+                <span><?php $this->theNext('%s', '没有了'); ?>&nbsp;&nbsp;&gt;</span>
+            </div>
         </div>
-        <div class="art-body" style="margin: 0">
+        <div class="art-body" style="margin: 0;height: auto;">
             <div style="display: none"></div>
-            <div style="margin-left: 0">
+            <div style="margin-left: 0;margin-right: 0">
                 <div>
                     <span style="line-height: 40px;margin-left: 30px;color: var(--color-font-r);">看看别的</span>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 88.05 64"><defs><style>.cls-2A {fill: var(--color-main);}</style></defs><g id="P_2" data-name="P 2"><g id="P_2-2" data-name="P 2"><polygon class="cls-2A" points="0 0 88.05 0 42.19 33 88.05 64 0 64 0 0"></polygon></g></g></svg>
@@ -83,17 +88,5 @@
     </div>
     <!-- 评论 -->
     <?php $this->need('comments.php'); ?>
-
-<div class="col-mb-12 col-8" id="main" role="main">
-
-    
-
-    <ul class="post-near">
-        <li>上一篇: <?php $this->thePrev('%s', '没有了'); ?></li>
-        <li>下一篇: <?php $this->theNext('%s', '没有了'); ?></li>
-    </ul>
-</div>
-
-<?php //$this->need('sidebar.php'); ?>
 
 <?php $this->need('footer.php'); ?>

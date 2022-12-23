@@ -80,7 +80,7 @@ function themeConfig($form)
                 <span>for Typecho</span>
             </span>
             <span>'.$theme_info["description"].'</span>
-            <a>'.$theme_info["version"].'</a>
+            <a href="https://github.com/Stapxs/BCUI-Typecho">'.$theme_info["version"].'</a>
         </div>
         <div class="bg-right"></div>
     </div>
@@ -91,7 +91,7 @@ function themeConfig($form)
         null,
         null,
         _t('copyright 信息'),
-        _t('这种事情自己随意就好了')
+        _t('这种事情自己随意就好了。')
     );
     $form->addInput($copyright);
 
@@ -106,18 +106,37 @@ function themeConfig($form)
 
     $darkmode = new Typecho_Widget_Helper_Form_Element_Radio(
         'darkmode',
-        array('auto' => _t('跟随系统'), 'light' => _t('浅色模式'), 'dark' => _t('深色模式')),
+        array(
+            'auto' => _t('跟随系统'),
+            'light' => _t('浅色模式'),
+            'dark' => _t('深色模式')
+        ),
         'auto',
         _t('颜色模式'),
         _t('默认将跟随系统颜色模式，也可以自己指定。'));
     $form->addInput($darkmode);
+
+    $color = new Typecho_Widget_Helper_Form_Element_Radio(
+        'color',
+        array(
+            '0' => _t('林槐蓝'),
+            '1' => _t('墨竹青'),
+            '2' => _t('少女粉'),
+            '3' => _t('微软紫'),
+            '4' => _t('坏猫黄'),
+            '5' => _t('玄素黑')
+        ),
+        '0',
+        _t('主题色'),
+        _t('强调主题色，有六个可以选。'));
+    $form->addInput($color);
 
     $ana = new Typecho_Widget_Helper_Form_Element_Text(
         'ana',
         null,
         null,
         _t('顶栏语录'),
-        _t('需要填写一个只返回纯文本的 API。也可以b不要啦 ……')
+        _t('需要填写一个只返回纯文本的 API。也可以不要啦 ……')
     );
     $form->addInput($ana);
 }

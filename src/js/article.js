@@ -1,14 +1,15 @@
 window.onscroll = function() {
     // 处理顶栏
+    const endHeight = getElementTop(document.getElementById("end-info"))
     const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-    if(scrollTop > 80 && window.onView !== true) {
+    if(scrollTop >= 80 && scrollTop <= endHeight && window.onView !== true) {
         changeBar()
         document.getElementById("main-bar").style.transform = "translate(0, -60px)"
         document.getElementById("article-bar").style.transform = "translate(0, -20px)"
         document.getElementById("article-bar").style.setProperty ("display", "flex", "important");
         document.getElementById("nav").style.borderBottom = "3px solid var(--color-main)";
         document.getElementById("nav-controller").style.display = "flex"
-    } else if(scrollTop < 80 && window.onView === true) {
+    } else if((scrollTop < 80 || scrollTop > endHeight ) && window.onView === true) {
         changeBar()
         document.getElementById("main-bar").style.transform = "translate(0)"
         document.getElementById("article-bar").style.transform = "translate(0, 60px)"
@@ -18,7 +19,6 @@ window.onscroll = function() {
     }
 
     // 计算阅读进度
-    const endHeight = getElementTop(document.getElementById("end-info"))
     const artTop = getElementTop(document.getElementById("article-main"))
     let percent = (scrollTop - artTop) / (endHeight - document.body.clientHeight)
     if(percent > 1) {
@@ -39,44 +39,56 @@ let io = new IntersectionObserver(hInView, {
 let updateLock = false
 function hInView (event) {
     const info = event[0]
+    const sender = info.target
     // 进入
-    if(info.isIntersecting && !updateLock) {
-        updateLock = true
-        const list = document.getElementById('content-body').childNodes
-        for(let i=0; i<list.length; i++) {
-            const item = list[i]
-            if(info.target.id === item.dataset.id) {
-                console.log(info.target.id + ' / ' + item.dataset.id)
-                item.classList.add('select')
-                if(item.className.indexOf('lvt') >= 0) {
-                    item.classList.remove('setsmall')
-                    // H2 需要向前寻找它的 H1
-                    // 同时将路过的 H2 全部展开
-                    for(let j=i-1; j>=0; j--) {
-                        if(list[j].className.indexOf('lvo') >= 0) {
-                            list[j].classList.add('select')
-                            break   // 找到了就可以退出了
-                        } else {
-                            list[j].classList.remove('setsmall')
+    if(info.isIntersecting) {
+        sender.classList.add('select')
+        if(!updateLock) {
+            updateLock = true
+            const list = document.getElementById('content-body').childNodes
+            let passHidden = 0
+            for(let i=0; i<list.length; i++) {
+                const item = list[i]
+                if(info.target.id === item.dataset.id) {
+                    item.classList.add('select')
+                    if(item.className.indexOf('lvt') >= 0) {
+                        item.classList.remove('setsmall')
+                        // H2 需要向前寻找它的 H1
+                        // 同时将路过的 H2 全部展开
+                        for(let j=i-1; j>=0; j--) {
+                            if(list[j].className.indexOf('lvo') >= 0) {
+                                list[j].classList.add('select')
+                                break   // 找到了就可以退出了
+                            } else {
+                                list[j].classList.remove('setsmall')
+                            }
+                        }
+                        // 向下寻找 H1 将路过的 H2 展开
+                        for(let j=i+1; j<list.length; j++) {
+                            if(list[j].className.indexOf('lvo') >= 0) {
+                                break
+                            } else {
+                                list[j].classList.remove('setsmall')
+                                // 统计个数以跳过下面的循环
+                                passHidden ++
+                            }
                         }
                     }
-                    // 向下寻找 H1 将路过的 H2 展开
-                    for(let j=i+1; j<list.length; j++) {
-                        if(list[j].className.indexOf('lvt') >= 0) {
-                            list[j].classList.remove('setsmall')
+                } else {
+                    item.classList.remove('select')
+                    if(item.className.indexOf('lvt') >= 0) {
+                        if(passHidden != 0) {
+                            passHidden --
                         } else {
-                            break
+                            item.classList.add('setsmall')
                         }
                     }
-                }
-            } else {
-                item.classList.remove('select')
-                if(item.className.indexOf('lvt') >= 0) {
-                    item.classList.add('setsmall')
                 }
             }
+            updateLock = false
         }
-        updateLock = false
+    } else {
+        sender.classList.remove('select')
     }
 }
 
@@ -134,14 +146,17 @@ function getElementTop (el) {
 
 // 创建目录
 function createTOC () {
-    console.log("正在处理目录 ……")
     // 检索 DOM
-    const tags = [ 'H1', 'H2', 'H3', 'H4' ]
+    const tags = [ 'H1', 'H2', 'H3', 'H4', 'H5' ]
     const doms = document.getElementById('article-main').getElementsByTagName('*')
     let show = []
+    let min = 6
     for (i = 0; i < doms.length; i++) {
         const name = doms[i].nodeName
         if(tags.indexOf(name) >= 0) {
+            if(min > tags.indexOf(doms[i].nodeName) + 1) {
+                min = tags.indexOf(doms[i].nodeName) + 1
+            }
             show.push(doms[i])
         }
     }
@@ -154,7 +169,7 @@ function createTOC () {
         let last = 0
         for (i = 0; i < show.length; i++) {
             const item = show[i]
-            const level = tags.indexOf(item.nodeName) + 1
+            const level = tags.indexOf(item.nodeName) - min + 2
             // 只构建两层
             if(level <= 2) {
                 // 构建目录项

@@ -219,10 +219,9 @@ body {
     max-height: calc(100vh - 120px);
     overflow-x: hidden;
     overflow-y: scroll;
-    margin-right: -10px;
     padding: 10px 40px 25px 0;
-    margin-bottom: 20px;
     width: calc(100% + 40px);
+    margin: -10px 0 -10px 0;
 }
 .content-body > div:last-child {
     margin-bottom: 0 !important;
@@ -235,9 +234,6 @@ body {
 .content-body > div > a {
     color: var(--color-font);
 }
-.content-body > div.lvo {
-
-}
 .content-body > div.lvo.select {
     background: var(--color-main);
 }
@@ -245,6 +241,7 @@ body {
     color: var(--color-font-r);
 }
 .content-body > div.lvt {
+    margin-left: 20px;
     transition: all .1s;
     transform: scaleY(1);
     transform-origin: top center;
@@ -302,15 +299,6 @@ body {
     margin-left: -40px;
     transition: color .5s, opacity .5s;
  }
-.article-main h1:hover:before,
-.article-main h2:hover:before,
-.article-main h3:hover:before,
-.article-main h4:hover:before,
-.article-main h5:hover:before,
-.article-main h6:hover:before {
-    color: var(--color-main);
-    opacity: 0.5;
-}
 .article-main-h-in-view:before {
     color: var(--color-main) !important;
     opacity: 0.5 !important;
@@ -322,6 +310,18 @@ body {
     color: var(--color-font-2);
     float: right;
     opacity: 0.3;
+}
+.article-main h1.select:before,
+.article-main h2.select:before,
+.article-main h3.select:before,
+.article-main h4.select:before,
+.article-main h5.select:before,
+.article-main h6.select:before,
+.article-main h1.select:after,
+.article-main h2.select:after,
+.article-main h3.select:after {
+    color: var(--color-main);
+    opacity: 0.7;
 }
 .article-main h1 {
     font-size: 1.5rem;
@@ -514,8 +514,19 @@ body {
 .more-card > div:first-child > div {
     flex: 1;
 }
-.more-card > div:first-child > a:last-child {
-
+.more-card > div:first-child > div.fov {
+    display: flex;
+    width: calc(100% + 80px);
+    background: var(--color-card-1);
+    border-radius: 0 0 7px 7px;
+    padding: 10px 20px;
+    margin: 30px -20px -20px -20px;
+}
+.more-card > div:first-child > div.fov > span {
+    font-size: 0.8rem;
+}
+.more-card > div:first-child > div.fov > div {
+    flex: 1;
 }
 .more-card > div:last-child {
     flex: 1;
