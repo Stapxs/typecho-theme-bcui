@@ -10,7 +10,15 @@ window.onload = function () {
             return ''
         })
         .then(data => {
-            anaBody.innerText = data.replace(/[\r\n]/g, "")
+            anaBody.innerText = data.replace(/[\r\n]/g, '')
         })
+    }
+}
+
+function jumpTo(url, newPage = false) {
+    if(newPage) {
+        window.open(url)
+    } else {
+        window.location.href = url
     }
 }

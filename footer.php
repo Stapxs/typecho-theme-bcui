@@ -24,6 +24,8 @@
 <!-- BorderCard UI -->
 <script src="https://stapxs.github.io/Border-Card-UI/js/main.js"></script>
 <script src="https://stapxs.github.io/Border-Card-UI/js/auto-theme.js"></script>
+<script src="<?php $this->options->themeUrl('src/js/jquery-3.6.3.min.js')?>"></script>
+<script src="<?php $this->options->themeUrl('src/bootstrap/js/bootstrap.min.js')?>"></script>
 <?php $this->footer(); ?>
 </body>
 </html>

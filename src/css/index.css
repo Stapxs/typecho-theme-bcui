@@ -79,6 +79,10 @@ footer a {
     }
 }
 
+.avatar {
+    cursor: pointer;
+}
+
 .bar-search {
     height: 35px;
     font-size: 15px;

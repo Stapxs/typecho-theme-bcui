@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="<?php $this->options->themeUrl('grid.css'); ?>">
     <link rel="stylesheet" href="<?php $this->options->themeUrl('style.css'); ?>">
 
-    <link rel="stylesheet" href="<?php $this->options->themeUrl('src/css/bootstrap.min.css')?>">
+    <link rel="stylesheet" href="<?php $this->options->themeUrl('src/bootstrap/css/bootstrap.min.css')?>">
     <link rel="stylesheet" href="<?php $this->options->themeUrl('src/font-awesome/css/font-awesome.min.css')?>">
 
     <!-- Border Card UI -->
@@ -65,7 +65,7 @@
             </div>
             <form class="form-inline my-2 my-lg-0" id="search" method="post" action="<?php $this->options->siteUrl(); ?>" role="search">
                 <input class="form-control mr-sm-2 bar-search" type="text" id="s" name="s" class="text" placeholder="搜索" aria-label="搜索">
-                <div id="user-avatar" class="avatar" title="登录">
+                <div id="user-avatar" class="avatar" title="登录" onclick="jumpTo('<?php $this->options->adminUrl(); ?>', true)">
                 <?php echo $this->user->gravatar(330, 'G', NULL, NULL) ?>
                     <span id="user-name" class="user-name">登录</span>
                 </div>
@@ -95,8 +95,7 @@
         // 获取页面类型，以及页面类型的参考见： /var/Widget/Archive.php@L1606、L617
         // 主要是 is 不能用于判断 404 ……
     ?>
-    <?php if (!$this->is('post') &&
-                !$this->is('category') &&
+    <?php if (!$this->is('post') && !$this->is('category') &&
                 $this->parameter->type != 404): ?>
     <div class="top-bar">
         <div></div>

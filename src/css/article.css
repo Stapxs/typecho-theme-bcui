@@ -480,6 +480,7 @@ body {
     margin-top: 10vh;
 }
 .more-card > div:first-child {
+    overflow: hidden;
     min-width: 300px;
     width: 30%;
     display: none;
@@ -493,6 +494,8 @@ body {
     justify-content: center;
 }
 .more-card > div:first-child a {
+    text-align: center;
+    width: 100%;
     color: var(--color-font);
     display: block;
     white-space: nowrap;
