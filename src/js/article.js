@@ -5,15 +5,13 @@ window.onscroll = function() {
     if(scrollTop >= 80 && scrollTop <= endHeight && window.onView !== true) {
         changeBar()
         document.getElementById("main-bar").style.transform = "translate(0, -60px)"
-        document.getElementById("article-bar").style.transform = "translate(0, -20px)"
-        document.getElementById("article-bar").style.setProperty ("display", "flex", "important");
+        document.getElementById("article-bar").classList.add('hid');
         document.getElementById("nav").style.borderBottom = "3px solid var(--color-main)";
         document.getElementById("nav-controller").style.display = "flex"
     } else if((scrollTop < 80 || scrollTop > endHeight ) && window.onView === true) {
         changeBar()
         document.getElementById("main-bar").style.transform = "translate(0)"
-        document.getElementById("article-bar").style.transform = "translate(0, 60px)"
-        document.getElementById("article-bar").style.setProperty ("display", "none", "important");
+        document.getElementById("article-bar").classList.remove('hid');
         document.getElementById("nav").style.borderBottom = "3px solid transparent";
         document.getElementById("nav-controller").style.display = "none"
     }
@@ -105,8 +103,9 @@ window.onload = function () {
 }
 
 function barController() {
+    const endHeight = getElementTop(document.getElementById("end-info"))
     const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-    if(scrollTop > 80) {
+    if(scrollTop > 80 && scrollTop < endHeight) {
         changeBar()
         document.getElementById("nav").style.marginTop = "0"
     }

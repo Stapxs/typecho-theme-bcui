@@ -154,6 +154,10 @@ body {
     height: 0;
     display: none !important;
 }
+.article-controller.hid {
+    transform: translate(0, -20px);
+    display: flex !important;
+}
 .article-controller > a {
     max-width: 30%;
     overflow: hidden;
@@ -183,6 +187,7 @@ body {
     display: flex;
 }
 .main > div:first-child {
+    overflow: hidden;
     flex: 1;
 }
 .main > div:last-child {
@@ -284,15 +289,14 @@ body {
     margin-top: 20px;
 }
 .article-main h1 {
-    border-bottom: 1px solid var(--color-shader);
+    border-bottom: 1px solid var(--color-card-2);
     padding-bottom: 10px;
 }
 .article-main h1:before,
 .article-main h2:before,
 .article-main h3:before,
 .article-main h4:before,
-.article-main h5:before,
-.article-main h6:before {
+.article-main h5:before {
     color: var(--color-font-2);
     opacity: 0.2;
     position: absolute;
@@ -316,7 +320,6 @@ body {
 .article-main h3.select:before,
 .article-main h4.select:before,
 .article-main h5.select:before,
-.article-main h6.select:before,
 .article-main h1.select:after,
 .article-main h2.select:after,
 .article-main h3.select:after {
@@ -356,24 +359,32 @@ body {
 .article-main h6 {
     font-size: 0.875rem;
 }
-.article-main h6:before {
-    content: "H6";
-}
 .article-main code {
     background: var(--color-main) !important;
     display: inline-block !important;
     color: var(--color-font-r) !important;
     padding: 0 10px !important;
     margin: 0 10px -7px !important;
+    border-radius: 7px;
+    font-family: 'monospace' !important;
+    overflow-x: scroll;
+}
+.article-main pre:not([class*=language-]) > code {
+    padding: 10px 20px !important;
+    width: calc(100% - 20px);
 }
 .article-main pre[class*=language-] > code {
     display: block !important;
     background: var(--color-card) !important;
-    padding: 10px 20px 10px 65px !important;
+    /* padding: 10px 20px 10px 65px !important; */
+    padding: 10px 20px !important;
     margin: 0 !important;
     border-radius: 0 0 7px 7px !important;
     color: var(--color-font) !important;
     font-size: 0.9rem;
+}
+.article-main pre[class*=language-] > code > span {
+    font-size: 1rem;
 }
 .article-main a {
     color: inherit;
@@ -397,6 +408,7 @@ body {
     background: var(--color-card-1);
     border-radius: 7px;
     overflow: hidden;
+    margin-bottom: 10px;
 }
 .article-main table > thead {
     background: var(--color-card-2);
@@ -405,11 +417,15 @@ body {
 .article-main table th {
     padding: 10px;
 }
+.katex-html {
+    display: none;
+}
 
 .code-toolbar {
     display: flex;
     flex-direction: column-reverse;
     margin-bottom: 20px;
+    max-width: calc(100vw - 40px);
 }
 .code-toolbar > pre {
     margin: 0.5rem 0 0 0 !important;
@@ -429,10 +445,9 @@ body {
     flex: 1;
 }
 .code-toolbar > .toolbar div:first-child span {
-    border-radius: 7px;
-    padding: 5px 10px;
-    color: var(--color-font);
-    background: var(--color-card);
+    border-radius: 7px !important;
+    padding: 8px 20px !important;
+    color: var(--color-font) !important;
 }
 .code-toolbar > .toolbar div:first-child span:before {
     content: '✏️';
@@ -694,13 +709,43 @@ body {
 }
 
 @media (max-width: 992px) {
+    body {
+        padding: 0 10px !important;
+    }
+    .top-bar {
+        --height: 15rem;
+        margin: 0 -20px;
+    }
     .article-main {
         padding: 0;
     }
     .main > div:last-child {
         width: 0;
     }
+    .article-controller.hid {
+        transform: translate(0px, -40px);
+        display: flex !important;
+    }
+    .code-toolbar {
+        max-width: unset;
+    }
+    .post-controller > svg:first-child {
+        display: none;
+    }
+    .main-right {
+        display: none;
+    }
+    .main-card {
+        margin-top: 65px;
+    }
     .content {
+        display: none;
+    }
+    .more-card > div:first-child {
+        margin-right: 0;
+        width: 100%;
+    }
+    .more-card > div:last-child {
         display: none;
     }
 }

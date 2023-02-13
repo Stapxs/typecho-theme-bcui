@@ -2,6 +2,13 @@
 <?php $this->need('header.php'); ?>
 
     <script src="<?php $this->options->themeUrl('src/js/article.js')?>"></script>
+
+    <script defer src="<?php $this->options->themeUrl('src/katex/katex.min.js'); ?>"></script>
+    <script defer src="<?php $this->options->themeUrl('src/katex/auto-render.min.js'); ?>"
+            onload="renderMathInElement(document.getElementById('article-main'),
+            {delimiters:[{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+    
+
     <!-- 文章主体 -->
     <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
         <div class="main-card">
@@ -41,7 +48,7 @@
                 echo $content;
              ?>
             </div>
-            <div id="main-right" style="width: 0px">
+            <div id="main-right" class="main-right" style="width: 0px">
                 <div class="content" id="content">
                     <div>目录</div>
                 </div>
@@ -88,5 +95,7 @@
     </div>
     <!-- 评论 -->
     <?php $this->need('comments.php'); ?>
+
+    <script src="<?php $this->options->themeUrl('src/js/prism.js')?>"></script>
 
 <?php $this->need('footer.php'); ?>

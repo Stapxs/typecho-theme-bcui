@@ -17,6 +17,7 @@
     border-radius: 7px;
     color: var(--color-font-1);
     padding: 20px;
+    width: 100%;
 }
 .comment-respond-body > form > p.csubmit {
     display: flex;
@@ -100,6 +101,7 @@
     background: var(--color-card-1);
     border: 0;
     padding: 10px 15px;
+    width: 100%;
 }
 
 .comments-list {
@@ -115,12 +117,18 @@
     border-radius: 99px;
     padding: 5px 10px;
 }
+.comments-list ol,
+.comments-list li {
+    list-style: none;
+}
 .comments-list > ol {
     width: 100%;
+    padding: 0;
 }
 .comments-list > ol > li {
     background: var(--color-card) !important;
     border: 0 !important;
+    padding: 0;
 }
 
 /* 对默认评论列表的一些 CSS 覆盖 */
@@ -140,7 +148,18 @@
 .comments-list > ol > li > div.comment-meta {
     background: var(--color-card-1);
     border-radius: 0 0 7px 7px;
+}
+.comment-meta {
     padding: 0 20px 10px 20px;
+    margin-top: -15px;
+}
+.comments-list > ol > li > div.comment-meta > a {
+    margin-left: 75px;
+}
+.comment-meta > a {
+    color: var(--color-font-1);
+    font-size: 0.8rem;
+    margin-left: 55px;
 }
 .comment-reply {
     margin-top: calc(-2rem - 20px);
@@ -149,6 +168,9 @@
     color: var(--color-font-1);
     font-size: 0.9rem;
     padding: 5px 25px;
+    text-align: right;
+    width: 100%;
+    display: block;
 }
 .comment-children {
     border-top: 2px solid var(--color-card-1);
@@ -160,6 +182,7 @@
     border: 0 !important;
     margin: 0;
     padding-right: 0;
+    padding-bottom: 10px;
 }
 .comments-list > ol > li > div.comment-author .avatar {
     border: 2px solid var(--color-card);
@@ -168,9 +191,12 @@
 .comment-author .avatar {
     margin-top: 10px;
     margin-right: 20px;
+    border-radius: 100%;
 }
 .comment-author cite {
     color: var(--color-main);
+    font-style: normal;
+    font-size: 1.1rem;
 }
 .comment-author cite > a {
     color: var(--color-main);
