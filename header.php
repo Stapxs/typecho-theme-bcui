@@ -94,7 +94,7 @@
     ?>
     <?php if (!$this->is('post') && !$this->is('category') &&
                 $this->parameter->type != 404): ?>
-    <div class="top-bar">
+    <div class="top-bar" style="background: url(<?php Typecho_Widget::widget('Widget_Options')->bg(); ?>) center;">
         <div></div>
         <div>
             <div class="top-bar-title">

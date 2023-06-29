@@ -38,7 +38,6 @@ footer a {
 .top-bar {
     --height:60vh;
     height: var(--height);
-    background: url(https://api.stapxs.cn/PicLib/Desktop) center;
     background-size: 100%, auto;
 }
 
@@ -377,7 +376,7 @@ footer a {
     width: fit-content;
     margin: 0 auto;
     padding: 30px 40px;
-    margin-top: 50%;
+    margin-top: calc(50% - 80px);
     transform: translateY(-50%);
 }
 .no-found-card > svg {

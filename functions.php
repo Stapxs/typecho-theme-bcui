@@ -131,6 +131,15 @@ function themeConfig($form)
         _t('强调主题色，有六个可以选。'));
     $form->addInput($color);
 
+    $bg = new Typecho_Widget_Helper_Form_Element_Text(
+        'bg',
+        null,
+        'https://lib.stapxs.cn/download/pic/desktopImg/get_image.php',
+        _t('顶栏背景图'),
+        _t('需要填写一个返回图片的 API，默认是我的桌面壁纸 API。')
+    );
+    $form->addInput($bg);
+
     $ana = new Typecho_Widget_Helper_Form_Element_Text(
         'ana',
         null,
