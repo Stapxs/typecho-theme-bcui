@@ -1,3 +1,19 @@
+document.addEventListener("DOMContentLoaded", () => {
+    // 初始化目录并监听滚动
+    createTOC()
+    const list = document.getElementById('content-body').childNodes
+    list.forEach((item) => {
+        const dom = document.getElementById(item.dataset.id)
+        if(dom !== null) {
+            io.observe(document.getElementById(item.dataset.id))
+        }
+    })
+
+    // 解析一些有必要的链接预览
+    createLinkView()
+})
+
+// 页面滚动事件
 window.onscroll = function() {
     // 处理顶栏
     const endHeight = getElementTop(document.getElementById("end-info"))
@@ -31,6 +47,7 @@ window.onscroll = function() {
     }
 }
 
+// H 标签自动亮起相关逻辑
 let io = new IntersectionObserver(hInView, {
     rootMargin: '0px 0px -80% 0px'
 })
@@ -88,18 +105,6 @@ function hInView (event) {
     } else {
         sender.classList.remove('select')
     }
-}
-
-window.onload = function () {
-    createTOC()
-    // 进行目录监听
-    const list = document.getElementById('content-body').childNodes
-    list.forEach((item) => {
-        const dom = document.getElementById(item.dataset.id)
-        if(dom !== null) {
-            io.observe(document.getElementById(item.dataset.id))
-        }
-    })
 }
 
 function barController() {
@@ -214,5 +219,23 @@ function changeContent() {
     } else {
         body.style.width = "0px"
         body.style.overflow = "hidden"
+    }
+}
+
+function createLinkView() {
+    const doms = document.getElementById('article-main').getElementsByTagName('a')
+    for (i = 0; i < doms.length; i++) {
+        const item = doms[i]
+        const link = item.href
+
+        const regList = {
+            github: /^https:\/\/github\.com\/[a-zA-Z0-9_-]+\/[a-zA-Z0-9_.-]+$/g
+        }
+
+        for(regName in regList) {
+            if(regList[regName].test(link)) {
+                loadView(regName, link, item)
+            }
+        }
     }
 }

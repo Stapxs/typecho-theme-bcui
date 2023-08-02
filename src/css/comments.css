@@ -208,3 +208,9 @@
     color: var(--color-font);
     padding: 10px 50px;
 }
+
+@media (max-width: 992px) {
+    .comment-respond-body {
+        padding: 10px;
+    }
+}

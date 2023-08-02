@@ -7,7 +7,7 @@
     <div class="ss-card" style="margin: 0 -15px 20px -15px">
         <header><?php $this->options->title(); ?>
             <span>
-            Theme <a href="https://stapxs.cn">BCUI</a> • Engine <a href="http://www.typecho.org">Typecho</a>
+            Theme <a href="https://github.com/Stapxs/BCUI-Typecho">BCUI</a> • Engine <a href="http://www.typecho.org">Typecho</a>
         </span>
         </header>
         <span><?php Typecho_Widget::widget('Widget_Options')->copyright(); ?></span><br>
@@ -24,7 +24,7 @@
 <!-- BorderCard UI -->
 <script src="https://stapxs.github.io/Border-Card-UI/js/main.js"></script>
 <script src="https://stapxs.github.io/Border-Card-UI/js/auto-theme.js"></script>
-<script src="<?php $this->options->themeUrl('src/js/jquery-3.6.3.min.js')?>"></script>
+<script src="<?php $this->options->themeUrl('src/js/lib/jquery-3.6.3.min.js')?>"></script>
 <script src="<?php $this->options->themeUrl('src/bootstrap/js/bootstrap.min.js')?>"></script>
 <?php $this->footer(); ?>
 </body>

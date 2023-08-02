@@ -63,7 +63,7 @@
             <form class="form-inline my-2 my-lg-0" id="search" method="post" action="<?php $this->options->siteUrl(); ?>" role="search">
                 <input class="form-control mr-sm-2 bar-search" type="text" id="s" name="s" class="text" placeholder="搜索" aria-label="搜索">
                 <div id="user-avatar" class="avatar" title="登录" onclick="jumpTo('<?php $this->options->adminUrl(); ?>', true)">
-                <?php echo $this->user->gravatar(330, 'G', NULL, NULL) ?>
+                    <?php echo $this->user->gravatar(330, 'G', NULL, NULL) ?>
                     <span id="user-name" class="user-name">登录</span>
                 </div>
             </form>

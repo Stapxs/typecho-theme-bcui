@@ -1,6 +1,9 @@
 <?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
 <?php $this->need('header.php'); ?>
 
+    <link rel="stylesheet" href="<?php $this->options->themeUrl('src/css/article/view_card.css')?>">
+
+    <script src="<?php $this->options->themeUrl('src/js/util/link_view.js')?>"></script>
     <script src="<?php $this->options->themeUrl('src/js/article.js')?>"></script>
 
     <script defer src="<?php $this->options->themeUrl('src/katex/katex.min.js'); ?>"></script>

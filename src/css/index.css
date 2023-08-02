@@ -38,7 +38,7 @@ footer a {
 .top-bar {
     --height:60vh;
     height: var(--height);
-    background-size: 100%, auto;
+    background-size: 100%, auto !important;
 }
 
 .top-bar > div:first-child {
@@ -60,6 +60,8 @@ footer a {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding: 10px;
+    width: calc(100% - 5px);
 }
 .top-bar-title p {
     font-size: 2rem;
@@ -203,6 +205,7 @@ footer a {
     background-color: var(--color-card) !important;
 }
 .art-body > div:last-child {
+    overflow: hidden;
     color: var(--color-font);
     margin-left: 60px;
     margin-right: 30px;
@@ -239,9 +242,11 @@ footer a {
     color: var(--color-font);
     margin-bottom: 10px;
     display: inline-block;
+    white-space: nowrap;
 }
 .art-body > div:last-child > div > span {
     color: var(--color-font-2);
+    overflow-wrap: anywhere;
 }
 .art-body > div:last-child > div:last-child {
     height: auto;
@@ -414,10 +419,20 @@ footer a {
     }
 }
 @media (max-width: 768px) {
+    .art-body {
+        height: 37vh;
+    }
     .art-body > div:first-child {
         display: none;
     }
     .art-body > div:last-child {
-        margin-left: 40px;
+        margin: 0;
+    }
+    .art-body > div:last-child div:first-child {
+        margin: -20px -20px 20px -20px;
+        border-radius: 2px;
+    }
+    .art-body > div:last-child div:first-child svg {
+        display: none;
     }
 }
