@@ -24,12 +24,17 @@ window.onscroll = function() {
         document.getElementById("article-bar").classList.add('hid');
         document.getElementById("nav").style.borderBottom = "3px solid var(--color-main)";
         document.getElementById("nav-controller").style.display = "flex"
+        // 在窄布局下显示目录
+        content.classList.remove('hidden')
     } else if((scrollTop < 80 || scrollTop > endHeight ) && window.onView === true) {
         changeBar()
         document.getElementById("main-bar").style.transform = "translate(0)"
         document.getElementById("article-bar").classList.remove('hid');
         document.getElementById("nav").style.borderBottom = "3px solid transparent";
         document.getElementById("nav-controller").style.display = "none"
+        // 在窄布局下隐藏目录
+        content.classList.remove('show')
+        content.classList.add('hidden')
     }
 
     // 计算阅读进度
@@ -219,6 +224,17 @@ function changeContent() {
     } else {
         body.style.width = "0px"
         body.style.overflow = "hidden"
+    }
+}
+
+function showContent() {
+    const content = document.getElementById('content')
+    if(window.getComputedStyle(content, null)['position'] == 'fixed') {
+        if(content.classList.contains('show')) {
+            content.classList.remove('show')
+        } else {
+            content.classList.add('show')
+        }
     }
 }
 

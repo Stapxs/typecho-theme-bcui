@@ -424,6 +424,9 @@ footer a {
     .top-bar {
         background-size: cover;
     }
+    .avatar svg {
+        display: none;
+    }
 }
 @media (max-width: 768px) {
     .art-body {
