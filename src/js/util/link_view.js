@@ -1,15 +1,38 @@
 function loadView(name, url, dom) {
     switch(name) {
         case 'github': viewGithub(url.replace('https://github.com/', ''), dom); break
+        case 'bilibili': ogView(url, dom); break
     }
 }
 
+function ogView(url, dom) {
+    $.ajax({
+        url: 'https://api.stapxs.cn/tool/page-info/' + encodeURIComponent(url),
+        success: function (data) {
+            dom.style.textDecoration = 'none'
+            dom.target = '_black'
+            dom.innerHTML = `
+                <div class='ss-card view-card og-card'>
+                    <div style="background: url(${data['og:image']})">
+                        <a>${data['og:url'] ? data['og:url'] : url}</a>
+                        <p>${data['og:title']}</p>
+                        ${data['og:description'] ? '<span>' + data['og:description'] + '</span>' : ''}
+                    </div>
+                </div>
+                `
+        },
+        error: function (e) {
+            console.log(e)
+        }
+    })
+}
+
 function viewGithub(info, dom) {
-    dom.style.textDecoration = 'none'
-    dom.target = '_black'
     $.ajax({
         url: 'https://api.github.com/repos/' + info,
         success: function (data) {
+            dom.style.textDecoration = 'none'
+            dom.target = '_black'
             dom.innerHTML = `
                 <div class='ss-card view-card github-card'>
                     <img src='${data.owner.avatar_url}'>

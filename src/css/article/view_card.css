@@ -1,13 +1,13 @@
 .view-card {
+    border-bottom: 3px solid transparent;
     margin: 5px 5px -15px 5px;
+    transition: border .3s;
 }
 .view-card:hover {
     border-bottom: 3px solid var(--color-main);
 }
 
 .github-card {
-    border-bottom: 3px solid transparent;
-    transition: border .3s;
     flex-direction: row;
     display: flex;
 }
@@ -42,4 +42,32 @@
     fill: var(--color-card-2);
     height: 40px;
     width: 40px;
+}
+
+.og-card a {
+    text-decoration: underline !important;
+    color: var(--color-font-1);
+    margin-bottom: 5px;
+    font-size: 0.8rem;
+    font-weight: 400;
+}
+.og-card a::before {
+    text-align: center;
+    content: '🔗';
+    color: transparent;
+    text-shadow: 0 0 0 var(--color-font-1);
+}
+.og-card p {
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin: 0;
+}
+.og-card span {
+    color: var(--color-font-1);
+    font-weight: 500;
+    margin-top: 10px;
+    display: block;
+    padding: 0 10px;
+    border-left: var(--color-main) solid 4px;
+    border-radius: 3px;
 }

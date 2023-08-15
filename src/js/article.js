@@ -1,4 +1,23 @@
+let viewer
+
 document.addEventListener("DOMContentLoaded", () => {
+    // 初始化图片查看器
+    // 遍历获取文档中的所有图片
+    const viewBody = document.getElementById('imageView')
+    const doms = document.getElementById('article-main').getElementsByTagName('img')
+    for(let i=0; i<doms.length; i++) {
+        const item = doms[i]
+        if(item.id != '') {
+            const img = document.createElement('img')
+            img.src = item.src
+            viewBody.appendChild(img)
+        }
+    }
+    viewer = new Viewer(viewBody, {
+        button: false,
+        toolbar: { prev: 1, reset: 1, next: 1 }
+    })
+
     // 初始化目录并监听滚动
     createTOC()
     const list = document.getElementById('content-body').childNodes
@@ -13,6 +32,11 @@ document.addEventListener("DOMContentLoaded", () => {
     createLinkView()
 })
 
+// 图片点击事件
+function viewImage(id) {
+    viewer.view(Number(id.split('-')[1]))
+}
+
 // 页面滚动事件
 window.onscroll = function() {
     // 处理顶栏
@@ -25,13 +49,22 @@ window.onscroll = function() {
         document.getElementById("nav").style.borderBottom = "3px solid var(--color-main)";
         document.getElementById("nav-controller").style.display = "flex"
         // 在窄布局下显示目录
-        content.classList.remove('hidden')
+        // content.classList.remove('hidden')
     } else if((scrollTop < 80 || scrollTop > endHeight ) && window.onView === true) {
         changeBar()
         document.getElementById("main-bar").style.transform = "translate(0)"
         document.getElementById("article-bar").classList.remove('hid');
         document.getElementById("nav").style.borderBottom = "3px solid transparent";
         document.getElementById("nav-controller").style.display = "none"
+        // 在窄布局下隐藏目录
+        // content.classList.remove('show')
+        // content.classList.add('hidden')
+    }
+
+    if(scrollTop >= 80 && scrollTop <= endHeight - window.screen.height) {
+        // 在窄布局下显示目录
+        content.classList.remove('hidden')
+    } else {
         // 在窄布局下隐藏目录
         content.classList.remove('show')
         content.classList.add('hidden')
@@ -245,11 +278,13 @@ function createLinkView() {
         const link = item.href
 
         const regList = {
-            github: /^https:\/\/github\.com\/[a-zA-Z0-9_-]+\/[a-zA-Z0-9_.-]+$/g
+            github: /^https:\/\/github\.com\/[a-zA-Z0-9_-]+\/[a-zA-Z0-9_.-]+$/g,
+            bilibili: /^https:\/\/www\.bilibili\.com\/video\/[a-zA-Z0-9_-]+$/g
         }
 
         for(regName in regList) {
             if(regList[regName].test(link)) {
+                console.log('预览链接：' + link)
                 loadView(regName, link, item)
             }
         }

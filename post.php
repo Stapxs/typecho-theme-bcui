@@ -2,15 +2,18 @@
 <?php $this->need('header.php'); ?>
 
     <link rel="stylesheet" href="<?php $this->options->themeUrl('src/css/article/view_card.css')?>">
+    <link rel="stylesheet" href="<?php $this->options->themeUrl('src/js/viewerjs/viewer.css')?>">
+
+    <script defer src="<?php $this->options->themeUrl('src/js/katex/katex.min.js'); ?>"></script>
+    <script defer src="<?php $this->options->themeUrl('src/js/viewerjs/viewer.js'); ?>"></script>
+    <script defer src="<?php $this->options->themeUrl('src/js/katex/auto-render.min.js'); ?>"
+            onload="renderMathInElement(document.getElementById('article-main'),
+            {delimiters:[{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
 
     <script src="<?php $this->options->themeUrl('src/js/util/link_view.js')?>"></script>
     <script src="<?php $this->options->themeUrl('src/js/article.js')?>"></script>
-
-    <script defer src="<?php $this->options->themeUrl('src/katex/katex.min.js'); ?>"></script>
-    <script defer src="<?php $this->options->themeUrl('src/katex/auto-render.min.js'); ?>"
-            onload="renderMathInElement(document.getElementById('article-main'),
-            {delimiters:[{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
     
+    <div id='imageView' class='image-view'></div>
 
     <!-- 文章主体 -->
     <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
@@ -48,6 +51,20 @@
                     '<${1} id="toc-${2}">${2}</${1}>',
                     $content
                 );
+                // 为 img 标签增加 id 方便定位图片预览器
+                function addIdToImg($matches) {
+                    global $imgCounter;
+                    if(!$imgCounter) {
+                        $imgCounter = 0;
+                    }
+                    $imgTag = $matches[0];
+                    $id = 'img-' . $imgCounter;
+                    $imgCounter++;
+                    $imgTagWithId = preg_replace('/<img(.*?)>/i', '<img$1 id="'.$id.'" onclick="viewImage(\''.$id.'\')">', $imgTag);
+                    return $imgTagWithId;
+                }
+                $imgCounter = 1;
+                $content = preg_replace_callback('/<img(.*?)>/i', 'addIdToImg', $content);
                 echo $content;
              ?>
             </div>

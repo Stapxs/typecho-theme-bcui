@@ -298,6 +298,7 @@ body {
     border-radius: 7px;
     /*border: 3px solid var(--color-card);*/
     /*outline: 3px solid var(--color-main);*/
+    cursor: pointer;
 }
 .article-main h1,
 .article-main h2,
@@ -731,6 +732,48 @@ body {
 }
 .comment-tags > div > a {
     color: var(--color-font-r);
+}
+
+.image-view {
+    display: none;
+}
+.viewer-canvas {
+    background-color: rgba(var(--color-bg-rgb), 0.5);
+}
+.viewer-canvas > img {
+    border-radius: 7px;
+}
+.viewer-title,
+.viewer-title:hover {
+    color: var(--color-font-1) !important;
+}
+.viewer-toolbar > ul > li {
+    width: 40px !important;
+    height: 40px !important;
+    background: var(--color-card-2) !important;
+    border-radius: 7px !important;
+    margin: 5px !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+.viewer-toolbar > ul > li:hover {
+    background: var(--color-card-1) !important;
+}
+.viewer-toolbar > ul > li:focus {
+    border: 0 !important;
+}
+.viewer-navbar {
+    background: transparent !important;
+}
+.viewer-list > li {
+    border-bottom: 2px solid var(--color-main) !important;
+    margin: 0 2px !important;
+}
+.viewer-list > .viewer-active {
+    transition: width .3s;
+    width: 50px;
 }
 
 @media (max-width: 992px) {
