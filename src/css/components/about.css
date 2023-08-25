@@ -1,0 +1,59 @@
+.ab-card {
+    margin-top: -100px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    display: flex;
+    position: relative;
+    z-index: 1;
+}
+.ab-card > div.says {
+    flex: 1;
+}
+
+.ab-base {
+    margin-right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 30%;
+    padding: 40px 20px;
+}
+.ab-base img {
+    border-radius: 100%;
+    transform: none;
+    height: 60px;
+    width: 60px;
+    margin: 0;
+}
+.ab-base p#ab-name {
+    color: var(--color-main);
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+.ab-base p#ab-mail {
+    color: var(--color-font-2);
+    font-size: 0.8rem;
+}
+.ab-base span#ab-context {
+    font-size: 0.9rem;
+    text-align: center;
+}
+.ab-base hr {
+    border-top: 1px solid var(--color-card-2);
+    height: 1px;
+    width: 100%;
+}
+.ab-base > div:not(#ab-gravatar) {
+    color: var(--color-font-2);
+    font-size: 0.9rem;
+}
+.ab-base > div:not(#ab-gravatar) span#ab-gpg {
+    background: #fff;
+    border-radius: 7px;
+    font-weight: bold;
+    padding: 3px 10px;
+    font-size: 0.7px;
+    color: #000;
+}

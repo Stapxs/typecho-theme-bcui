@@ -22,6 +22,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
     </article>
 </div>
 
-<script src="<?php $this->options->themeUrl('src/js/links.js')?>"></script>
+<script src="<?php $this->options->themeUrl('src/js/components/links.js')?>"></script>
 
 <?php $this->need('footer.php'); ?>

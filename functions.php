@@ -165,6 +165,7 @@ function themeFields($layout)
 */
 
 // 这是个从 illi 主题抄过来的获取第一张图片的方法（x
+// https://github.com/touchitvoid/illi
 function showThumbnail($widget)
 {
     $cai = '';//这里可以添加图片后缀，例如七牛的缩略图裁剪规则，这里默认为空
