@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="<?php $this->options->themeUrl('src/css/article.css')?>">
     <link rel="stylesheet" href="<?php $this->options->themeUrl('src/css/others.css')?>">
 
-    <link rel="stylesheet" href="<?php $this->options->themeUrl('src/Border-Card-UI/prism-light.css')?>">
+    <link rel="stylesheet" href="<?php $this->options->themeUrl('src/Border-Card-UI/css/prism-light.css')?>">
     <link rel="stylesheet" href="<?php $this->options->themeUrl('src/css/color/append-light.css')?>">
     
     <script src="<?php $this->options->themeUrl('src/js/index.js')?>"></script>
