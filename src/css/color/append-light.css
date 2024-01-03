@@ -1,3 +1,6 @@
+.article-main pre[class*=language-] > code {
+    background-image: linear-gradient(transparent 50%,rgba(69,142,209,.05) 50%) !important;
+}
 .viewer-zoom-in::before, .viewer-zoom-out::before, .viewer-one-to-one::before, .viewer-reset::before, .viewer-prev::before, .viewer-play::before, .viewer-next::before, .viewer-rotate-left::before, .viewer-rotate-right::before, .viewer-flip-horizontal::before, .viewer-flip-vertical::before, .viewer-fullscreen::before, .viewer-fullscreen-exit::before, .viewer-close::before {
     filter: invert(100%);
 }

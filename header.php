@@ -38,7 +38,7 @@
     document.documentElement.style.setProperty('--color-main', 'var(--color-main-' + <?php Typecho_Widget::widget('Widget_Options')->color(); ?> + ')');
 </script>
 
-<body>
+<body class="line-numbers">
 
 <nav id="nav" class="container-lg navbar navbar-expand-lg navbar-dark fixed-top nav-bar">
     <div id="main-bar" class="container-lg" style="padding-left: 30px;transition: transform .3s;">
