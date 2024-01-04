@@ -145,7 +145,7 @@ function themeConfig($form)
         null,
         null,
         _t('顶栏语录'),
-        _t('需要填写一个只返回纯文本的 API。也可以不要啦 ……')
+        _t('需要填写一个只返回纯文本的 API，如果不使用 API 就直接填写文本。')
     );
     $form->addInput($ana);
 }

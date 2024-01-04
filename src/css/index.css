@@ -216,7 +216,6 @@ footer a {
     background-color: var(--color-card) !important;
 }
 .art-body > div:last-child {
-    overflow: hidden;
     color: var(--color-font);
     margin-left: 60px;
     margin-right: 30px;
@@ -440,6 +439,7 @@ footer a {
         display: none;
     }
     .art-body > div:last-child {
+        overflow: hidden;
         margin: 0;
     }
     .art-body > div:last-child div:first-child {

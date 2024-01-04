@@ -80,8 +80,10 @@ window.onscroll = function() {
         percent = 0
     }
     const progressBar = document.getElementById("content-progress")
-    if(progressBar) {
+    const progressBarSm = document.getElementById("content-progress-small")
+    if(progressBar && progressBarSm) {
         progressBar.style.width = "calc(calc(100% + 40px) * " + percent + ")"
+        progressBarSm.style.width = "calc(calc(100% + 40px) * " + percent + ")"
     }
 }
 

@@ -845,6 +845,9 @@ body {
     .content.show {
         transform: translateY(-420px);
     }
+    .content.show > div.content-progress-small {
+        display: none;
+    }
     .content.hidden {
         transform: translateY(0);
     }

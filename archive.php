@@ -1,6 +1,40 @@
 <?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
 <?php $this->need('header.php'); ?>
 
+<?php
+    // 获取分页信息
+    $hiddens = '';
+    $hidden = '';
+    $page = '';
+    if ($this->is('index')) {
+      $page = "/index.php/page/";
+    } elseif ($this->is('author')) {
+      $page = $this->author->permalink;
+    } elseif ($this->is('category')) {
+      $url = $_SERVER['PHP_SELF'];
+      if (empty($url)) {
+        $url = $_SERVER['REQUEST_URI'];
+      }
+      $page = preg_replace("/\/\d+/u", '', $url);
+    }
+    $prev = $this->_currentPage - 1;
+    $next = $this->_currentPage + 1;
+    if ($this->_currentPage == 0 || $this->_currentPage == 1) {
+      $hidden = 'hidden';
+      $cpage = 1;
+    } else {
+      $cpage = $this->_currentPage;
+    }
+    if ($this->_currentPage == ceil($this->getTotal() / $this->parameter->pageSize)) {
+      $hiddens = 'hidden';
+    } elseif (ceil($this->getTotal() / $this->parameter->pageSize) == 1) {
+      $hiddens = 'hidden';
+      $hidden = 'hidden';
+    }
+    $http_type = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')) ? 'https://' : 'http://';
+    $site = $http_type . $_SERVER['HTTP_HOST'];
+?>
+
 <div id="main" role="main" style="margin-top: 100px">
     <?php $pageType = $this->parameter->type; ?>
     <div class="archive-title ss-card">
@@ -53,8 +87,12 @@
         </article>
     <?php endif; ?>
     </div>
-
-    <?php $this->pageNav('&laquo; 前一页', '后一页 &raquo;'); ?>
+    
+    <div class="controller">
+        <button onclick="window.location.href = '<?=$site.$page.$prev?>'" <?php echo $hidden ?> class="ss-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><path d="M137.4 406.6l-128-127.1C3.125 272.4 0 264.2 0 255.1s3.125-16.38 9.375-22.63l128-127.1c9.156-9.156 22.91-11.9 34.88-6.943S192 115.1 192 128v255.1c0 12.94-7.781 24.62-19.75 29.58S146.5 415.8 137.4 406.6z"></path></svg></button>
+        <div><span>第 <?= $cpage ?> 页</span></div>
+        <button onclick="window.location.href = '<?=$site.$page.$next?>'" <?php echo $hiddens ?> class="ss-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><path d="M118.6 105.4l128 127.1C252.9 239.6 256 247.8 256 255.1s-3.125 16.38-9.375 22.63l-128 127.1c-9.156 9.156-22.91 11.9-34.88 6.943S64 396.9 64 383.1V128c0-12.94 7.781-24.62 19.75-29.58S109.5 96.23 118.6 105.4z"></path></svg></button>
+    </div>
 </div><!-- end #main -->
 
 <?php $this->need('footer.php'); ?>
