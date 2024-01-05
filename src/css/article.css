@@ -240,14 +240,23 @@ body {
     margin: 0 -20px;
     width: calc(calc(100% + 40px) * 0);
 }
+.content-progress-small {
+    border-radius: 10px;
+    margin: 0 -10px;
+    display: none;
+}
 .content-body {
     max-height: calc(100vh - 120px);
     overflow-x: hidden;
     overflow-y: scroll;
-    padding: 10px 40px 25px 0;
-    width: calc(100% + 40px);
-    margin: -10px 0 -10px 0;
+    padding: 10px 15px 25px 0;
+    width: 100%;
+    margin: -10px 0 5px 10px;
     flex: 1;
+    overscroll-behavior: contain;
+}
+.comment-body::-webkit-scrollbar {
+    background-color: transparent !important;
 }
 .content-body > div:last-child {
     margin-bottom: 0 !important;
@@ -255,7 +264,7 @@ body {
 .content-body > div {
     border-radius: 7px;
     padding: 10px 20px;
-    margin-bottom: 5px;
+    display: flex;
 }
 .content-body > div > a {
     color: var(--color-font);
@@ -267,10 +276,15 @@ body {
     color: var(--color-font-r);
 }
 .content-body > div.lvt {
-    margin-left: 20px;
+    background: var(--color-card-1);
     transition: all .1s;
     transform: scaleY(1);
     transform-origin: top center;
+    border-radius: 0;
+    padding: 5px 20px;
+}
+.content-body > div.lvt > div {
+    width: 15px;
 }
 .content-body > div.lvt.setsmall {
     height: 0;
@@ -280,6 +294,12 @@ body {
 }
 .content-body > div.lvt.select {
     background: var(--color-card-1);
+}
+.content-body > div.lvt.select > div {
+    width: 5px;
+    background-color: var(--color-main);
+    border-radius: 7px;
+    margin: 3px 10px 3px 0;
 }
 .li-a-show {
     border-left: 7px solid var(--color-main) !important;
@@ -452,18 +472,15 @@ body {
     margin-right: 10px;
 }
 .code-toolbar > .toolbar div:last-child button {
-    border: 0;
-    border-radius: 7px;
-    width: 90px;
+    background: var(--color-card-1) !important;
+    color: var(--color-font) !important;
+    transition: background .3s;
     height: 30px;
-    background: var(--color-card);
-    color: var(--color-font);
+    width: 90px;
 }
 .code-toolbar > .toolbar div:last-child button:hover {
+    background: var(--color-card) !important;
     opacity: 0.7;
-}
-.code-toolbar > .toolbar div:last-child button:focus {
-    outline: 1px solid var(--color-main);
 }
 .line-numbers-rows > span:before {
     color: var(--color-font);
@@ -843,10 +860,16 @@ body {
         top: 0;
     }
     .content.show {
-        transform: translateY(-420px);
+        transform: translateY(-420px) !important;
+    }
+    .content.nb {
+        transform: translateY(-53px);
+    }
+    .content-progress-small {
+        display: block;
     }
     .content.show > div.content-progress-small {
-        display: none;
+        display: none !important;
     }
     .content.hidden {
         transform: translateY(0);

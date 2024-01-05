@@ -1,6 +1,10 @@
 let viewer
 
 document.addEventListener("DOMContentLoaded", () => {
+    const meta = document.createElement('meta')
+    meta.setAttribute('name', 'referrer')
+    meta.setAttribute('content', 'no-referrer')
+    document.head.appendChild(meta)
     // 初始化图片查看器
     // 遍历获取文档中的所有图片
     const viewBody = document.getElementById('imageView')
@@ -48,26 +52,12 @@ window.onscroll = function() {
         document.getElementById("article-bar").classList.add('hid');
         document.getElementById("nav").style.borderBottom = "3px solid var(--color-main)";
         document.getElementById("nav-controller").style.display = "flex"
-        // 在窄布局下显示目录
-        // content.classList.remove('hidden')
     } else if((scrollTop < 80 || scrollTop > endHeight ) && window.onView === true) {
         changeBar()
         document.getElementById("main-bar").style.transform = "translate(0)"
         document.getElementById("article-bar").classList.remove('hid');
         document.getElementById("nav").style.borderBottom = "3px solid transparent";
         document.getElementById("nav-controller").style.display = "none"
-        // 在窄布局下隐藏目录
-        // content.classList.remove('show')
-        // content.classList.add('hidden')
-    }
-
-    if(scrollTop >= 80 && scrollTop <= endHeight - window.screen.height) {
-        // 在窄布局下显示目录
-        content.classList.remove('hidden')
-    } else {
-        // 在窄布局下隐藏目录
-        content.classList.remove('show')
-        content.classList.add('hidden')
     }
 
     // 计算阅读进度
@@ -83,7 +73,20 @@ window.onscroll = function() {
     const progressBarSm = document.getElementById("content-progress-small")
     if(progressBar && progressBarSm) {
         progressBar.style.width = "calc(calc(100% + 40px) * " + percent + ")"
-        progressBarSm.style.width = "calc(calc(100% + 40px) * " + percent + ")"
+        progressBarSm.style.width = "calc(calc(100% + 15px) * " + percent + ")"
+    }
+
+    // 窄布局下的目录处理
+    if(scrollTop >= 80) {
+        content.classList.remove('hidden')
+    } else {
+        content.classList.remove('show')
+        content.classList.add('hidden')
+    }
+    if(scrollTop > endHeight) {
+        content.classList.add('nb')
+    } else {
+        content.classList.remove('nb')
     }
 }
 
@@ -165,6 +168,12 @@ function changeBar() {
         document.getElementById("nav-controller").style.margin = "30px auto 0"
         document.getElementById("nav-controller").style.opacity = "1"
 
+        // 如果导航栏是展开的（在窄布局下），就顺便把它关了
+        const navbarNavAltMarkup = document.getElementById("navbarNavAltMarkup")
+        if(navbarNavAltMarkup && navbarNavAltMarkup.classList.contains('show')) {
+            document.getElementById("navbarNavAltMarkupButton").click()
+        }
+
         // document.getElementById("content").style.top = "20px"
     } else {
         window.onView = false
@@ -222,6 +231,7 @@ function createTOC () {
                 const a = document.createElement('a')
                 a.innerText = item.innerText
                 a.href = '#' + item.id
+                const divSelect = document.createElement('div')
                 // PS：第一个如果不是 H1 就不显示，直到遇到第一个 H1
                 if(last == 0 && level != 1) {
                     body.style.display = 'none'
@@ -235,6 +245,7 @@ function createTOC () {
                 }
                 last = level
                 // 添加
+                body.appendChild(divSelect)
                 body.appendChild(a)
                 div.appendChild(body)
             }
@@ -279,15 +290,33 @@ function createLinkView() {
         const item = doms[i]
         const link = item.href
 
-        const regList = {
-            github: /^https:\/\/github\.com\/[a-zA-Z0-9_-]+\/[a-zA-Z0-9_.-]+$/g,
-            bilibili: /^https:\/\/www\.bilibili\.com\/video\/[a-zA-Z0-9_-]+$/g
+        // 下面这段主要用来判断链接是不是混在文本里的
+        const childNodes = item.parentNode.childNodes
+        // 寻找 item 在 childNodes 里的位置
+        let index = -1
+        for (j = 0; j < childNodes.length; j++) {
+            if (childNodes[j] == item) {
+                index = j
+                break
+            }
         }
+        // 判断它的前后是不是 #text
+        const prevNode = childNodes[index - 1]
+        const nextNode = childNodes[index + 1]
+        const isPrevText = prevNode && prevNode.nodeName === '#text'
+        const isNextText = nextNode && nextNode.nodeName === '#text'
 
-        for(regName in regList) {
-            if(regList[regName].test(link)) {
-                console.log('预览链接：' + link)
-                loadView(regName, link, item)
+        if (item.parentNode.nodeName == 'P' && !isNextText && !isPrevText) {
+            const regList = {
+                github: /^https:\/\/github\.com\/[a-zA-Z0-9_-]+\/[a-zA-Z0-9_.-]+$/g,
+                bilibili: /^https:\/\/www\.bilibili\.com\/video\/[a-zA-Z0-9_-]+$/g
+            }
+
+            for (regName in regList) {
+                if (regList[regName].test(link)) {
+                    console.log('预览链接：' + link)
+                    loadView(regName, link, item)
+                }
             }
         }
     }

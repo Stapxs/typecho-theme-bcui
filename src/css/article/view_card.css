@@ -1,6 +1,6 @@
 .view-card {
     border-bottom: 3px solid transparent;
-    margin: 5px 5px -15px 5px;
+    margin: 5px 5px 0 5px;
     transition: border .3s;
 }
 .view-card:hover {
@@ -8,8 +8,8 @@
 }
 
 .github-card {
-    flex-direction: row;
     display: flex;
+    align-items: center;
 }
 
 .github-card > img {
@@ -22,28 +22,46 @@
 
 .github-card > div.name {
     flex-direction: column;
+    overflow: hidden;
     display: flex;
     flex: 1;
+}
+.github-card > div.name > a > svg {
+    display: inline-block;
+    margin-right: 5px;
+    fill: var(--color-font);
 }
 .github-card > div.name > span {
     text-decoration: none !important;
     color: var(--color-font-1);
     font-weight: normal;
+    white-space: nowrap;
     font-size: 0.8rem;
 }
+.github-card > div.name > div.topics {
+    display: flex;
+    flex-wrap: wrap;
+}
+.github-card > div.name > div.topics > span {
+    background: var(--color-main);
+    color: var(--color-font-r);
+    border-radius: 100px;
+    padding: 2px 15px;
+    margin-right: 5px;
+    margin-top: 3px;
+    font-size: 0.8rem;
+    font-weight: 200;
+}
 
-.github-card > div.end {
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
+.og-card {
     display: flex;
 }
-.github-card > div.end > svg {
-    fill: var(--color-card-2);
-    height: 40px;
-    width: 40px;
+.og-card > img {
+    max-height: 100%;
+    margin: 0 20px 0 5px;
+    transform: unset;
+    cursor: default;
 }
-
 .og-card a {
     text-decoration: underline !important;
     color: var(--color-font-1);
@@ -51,12 +69,12 @@
     font-size: 0.8rem;
     font-weight: 400;
 }
-.og-card a::before {
+/* .og-card a::before {
     text-align: center;
     content: '🔗';
     color: transparent;
     text-shadow: 0 0 0 var(--color-font-1);
-}
+} */
 .og-card p {
     font-size: 0.9rem;
     font-weight: bold;

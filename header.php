@@ -41,9 +41,9 @@
 <body class="line-numbers">
 
 <nav id="nav" class="container-lg navbar navbar-expand-lg navbar-dark fixed-top nav-bar">
-    <div id="main-bar" class="container-lg" style="padding-left: 30px;transition: transform .3s;">
+    <div id="main-bar" class="container-lg main-bar">
         <a class="navbar-brand" href="<?php $this->options->siteUrl(); ?>"><?php $this->options->title() ?></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" id="navbarNavAltMarkupButton" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <svg style="background-image: none;color: var(--color-font);" class="navbar-toggler-icon" xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'><path stroke='currentColor' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'></path></svg>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
