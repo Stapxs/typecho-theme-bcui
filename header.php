@@ -27,9 +27,11 @@
     <link rel="stylesheet" href="<?php $this->options->themeUrl('src/css/color/append-light.css')?>">
     
     <script src="<?php $this->options->themeUrl('src/js/index.js')?>"></script>
-
-    <!-- 通过自有函数输出HTML头部信息 -->
+    
     <?php $this->header(); ?>
+    
+    <meta property="og:image" content="<?php showThumbnail($this); ?>" />
+    
 </head>
 
 <script>
