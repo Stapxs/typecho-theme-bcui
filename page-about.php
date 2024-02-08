@@ -31,7 +31,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
                         <p id='ab-mail'>{ab-mail}</p>
                         <span id='ab-context'>{ab-context}</span>
                         <hr>
-                        <div>GPG Key：<span id='ab-gpg'>{ab-gpg}</span></div>
+                        <div id='ab-gpg'>{ab-gpg}</div>
                     </div>
                     <div class="ss-card says">
                         <header id='ab-hello-title'>{ab-hello-title}</header>

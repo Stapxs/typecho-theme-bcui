@@ -20,6 +20,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
             <?php $this->content(); ?>
         </div>
     </article>
+
+    <?php $this->need('comments.php'); ?>
 </div>
 
 <script src="<?php $this->options->themeUrl('src/js/components/links.js')?>"></script>

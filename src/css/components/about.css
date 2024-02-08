@@ -45,15 +45,16 @@
     height: 1px;
     width: 100%;
 }
-.ab-base > div:not(#ab-gravatar) {
+.ab-base > div#ab-gpg {
     color: var(--color-font-2);
     font-size: 0.9rem;
+    display: flex;
 }
-.ab-base > div:not(#ab-gravatar) span#ab-gpg {
-    background: #fff;
-    border-radius: 7px;
+.ab-base > div#ab-gpg a {
+    background: var(--color-main);
+    color: var(--color-font-r);
+    border-radius: 100px;
     font-weight: bold;
     padding: 3px 10px;
-    font-size: 0.7px;
-    color: #000;
+    font-size: 0.7rem;
 }
