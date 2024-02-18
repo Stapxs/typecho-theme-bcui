@@ -1,4 +1,5 @@
 let viewer
+let nowOnh = null
 
 document.addEventListener("DOMContentLoaded", () => {
     const meta = document.createElement('meta')
@@ -94,57 +95,14 @@ window.onscroll = function() {
 let io = new IntersectionObserver(hInView, {
     rootMargin: '0px 0px -80% 0px'
 })
-let updateLock = false
 function hInView (event) {
     const info = event[0]
     const sender = info.target
     // 进入
     if(info.isIntersecting) {
         sender.classList.add('select')
-        if(!updateLock) {
-            updateLock = true
-            const list = document.getElementById('content-body').childNodes
-            let passHidden = 0
-            for(let i=0; i<list.length; i++) {
-                const item = list[i]
-                if(info.target.id === item.dataset.id) {
-                    item.classList.add('select')
-                    if(item.className.indexOf('lvt') >= 0) {
-                        item.classList.remove('setsmall')
-                        // H2 需要向前寻找它的 H1
-                        // 同时将路过的 H2 全部展开
-                        for(let j=i-1; j>=0; j--) {
-                            if(list[j].className.indexOf('lvo') >= 0) {
-                                list[j].classList.add('select')
-                                break   // 找到了就可以退出了
-                            } else {
-                                list[j].classList.remove('setsmall')
-                            }
-                        }
-                        // 向下寻找 H1 将路过的 H2 展开
-                        for(let j=i+1; j<list.length; j++) {
-                            if(list[j].className.indexOf('lvo') >= 0) {
-                                break
-                            } else {
-                                list[j].classList.remove('setsmall')
-                                // 统计个数以跳过下面的循环
-                                passHidden ++
-                            }
-                        }
-                    }
-                } else {
-                    item.classList.remove('select')
-                    if(item.className.indexOf('lvt') >= 0) {
-                        if(passHidden != 0) {
-                            passHidden --
-                        } else {
-                            item.classList.add('setsmall')
-                        }
-                    }
-                }
-            }
-            updateLock = false
-        }
+        showhList(info.target.id)
+        nowOnh = info.target.id
     } else {
         sender.classList.remove('select')
     }
@@ -218,6 +176,9 @@ function createTOC () {
         const div = document.createElement('div')
         div.id = 'content-body'
         div.className = 'content-body'
+        div.onmouseleave = function() {
+            showhList(nowOnh)
+        }
         // PS：用于记录上一个目录项的等级
         let last = 0
         for (i = 0; i < show.length; i++) {
@@ -228,6 +189,9 @@ function createTOC () {
                 // 构建目录项
                 const body = document.createElement('div')
                 body.dataset.id = item.id
+                body.onclick = function() {
+                    document.location.href = '#' + item.id
+                }
                 const a = document.createElement('a')
                 a.innerText = item.innerText
                 a.href = '#' + item.id
@@ -239,6 +203,10 @@ function createTOC () {
                 }
                 if(level == 1) {
                     body.className = 'lvo'
+                    body.onmouseover = function() {
+                        showhList(nowOnh)
+                        showhList(item.id, false)
+                    }
                 }
                 if(level == 2) {
                     body.className = 'lvt setsmall'
@@ -316,6 +284,53 @@ function createLinkView() {
                 if (regList[regName].test(link)) {
                     console.log('预览链接：' + link)
                     loadView(regName, link, item)
+                }
+            }
+        }
+    }
+}
+
+function showhList(id, updateAll = true) {
+    const list = document.getElementById('content-body').childNodes
+    let passHidden = 0
+    for(let i=0; i<list.length; i++) {
+        const item = list[i]
+        if(id === item.dataset.id) {
+            item.classList.add('select')
+            item.classList.remove('setsmall')
+            if(item.className.indexOf('lvt') >= 0) {
+                // H2 需要向前寻找它的 H1
+                // 同时将路过的 H2 全部展开
+                for(let j=i-1; j>=0; j--) {
+                    if(list[j].className.indexOf('lvo') >= 0) {
+                        list[j].classList.add('select')
+                        list[j+1].classList.add('rad-top')
+                        break   // 找到了就可以退出了
+                    } else {
+                        list[j].classList.remove('setsmall')
+                    }
+                }
+            }
+            // 向下寻找 H1 将路过的 H2 展开
+            for (let j = i + 1; j < list.length; j++) {
+                if (list[j].className.indexOf('lvo') >= 0) {
+                    list[j - 1].classList.add('rad-bot')
+                    break
+                } else {
+                    list[j].classList.remove('setsmall')
+                    // 统计个数以跳过下面的循环
+                    passHidden++
+                }
+            }
+        } else {
+            if (updateAll) {
+                item.classList.remove('select')
+                if (item.className.indexOf('lvt') >= 0) {
+                    if (passHidden != 0) {
+                        passHidden--
+                    } else {
+                        item.classList.add('setsmall')
+                    }
                 }
             }
         }

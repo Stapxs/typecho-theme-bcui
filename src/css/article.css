@@ -263,10 +263,15 @@ body {
 .content-body > div {
     border-radius: 7px;
     padding: 10px 20px;
+    cursor: pointer;
     display: flex;
 }
 .content-body > div > a {
     color: var(--color-font);
+    text-decoration: none;
+}
+.content-body > div.lvo:hover {
+    background: var(--color-card-1);
 }
 .content-body > div.lvo.select {
     background: var(--color-main);
@@ -275,12 +280,18 @@ body {
     color: var(--color-font-r);
 }
 .content-body > div.lvt {
-    background: var(--color-card-1);
+    background: var(--color-card-2);
     transition: all .1s;
     transform: scaleY(1);
     transform-origin: top center;
     border-radius: 0;
     padding: 5px 20px;
+}
+.content-body > div.lvt.rad-top {
+    border-radius: 7px 7px 0 0;
+}
+.content-body > div.lvt.rad-bot {
+    border-radius: 0 0 7px 7px;
 }
 .content-body > div.lvt > div {
     width: 15px;
@@ -292,7 +303,7 @@ body {
     margin-bottom: 0;
 }
 .content-body > div.lvt.select {
-    background: var(--color-card-1);
+    background: var(--color-card-2);
 }
 .content-body > div.lvt.select > div {
     width: 5px;
