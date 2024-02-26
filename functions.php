@@ -148,6 +148,15 @@ function themeConfig($form)
         _t('需要填写一个只返回纯文本的 API，如果不使用 API 就直接填写文本。')
     );
     $form->addInput($ana);
+
+    $umami = new Typecho_Widget_Helper_Form_Element_Text(
+        'umami',
+        null,
+        null,
+        _t('umami 代码'),
+        _t('umami 站点统计的配置，这是个开源的站点统计工具，可以自己搭建；主题目前支持它，要启用请填写 umami 代码。')
+    );
+    $form->addInput($umami);
 }
 
 /*

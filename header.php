@@ -39,6 +39,7 @@
     const themeColor = '<?php Typecho_Widget::widget('Widget_Options')->color(); ?>' === '' ? '0' : '<?php Typecho_Widget::widget('Widget_Options')->color(); ?>'
     document.documentElement.style.setProperty('--color-main', 'var(--color-main-' + <?php Typecho_Widget::widget('Widget_Options')->color(); ?> + ')');
 </script>
+<?php echo Typecho_Widget::widget('Widget_Options')->umami(); ?>
 
 <body class="line-numbers">
 
