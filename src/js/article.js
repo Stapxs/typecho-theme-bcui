@@ -101,7 +101,7 @@ function hInView (event) {
     // 进入
     if(info.isIntersecting) {
         sender.classList.add('select')
-        showhList(info.target.id)
+        showhList(info.target.id, true)
         nowOnh = info.target.id
     } else {
         sender.classList.remove('select')
@@ -177,7 +177,7 @@ function createTOC () {
         div.id = 'content-body'
         div.className = 'content-body'
         div.onmouseleave = function() {
-            showhList(nowOnh)
+            showhList(nowOnh, true)
         }
         // PS：用于记录上一个目录项的等级
         let last = 0
@@ -196,7 +196,7 @@ function createTOC () {
                 a.innerText = item.innerText
                 a.href = '#' + item.id
                 const divSelect = document.createElement('div')
-                // PS：第一个如果不是 H1 就不显示，直到遇到第一个 H1
+                // PS：第一个如果不是最高级就不显示，直到遇到第一个最高级
                 if(last == 0 && level != 1) {
                     body.style.display = 'none'
                     break
@@ -204,8 +204,8 @@ function createTOC () {
                 if(level == 1) {
                     body.className = 'lvo'
                     body.onmouseover = function() {
-                        showhList(nowOnh)
-                        showhList(item.id, false)
+                        showhList(nowOnh, true)
+                        showhList(item.id, false, true)
                     }
                 }
                 if(level == 2) {
@@ -216,6 +216,19 @@ function createTOC () {
                 body.appendChild(divSelect)
                 body.appendChild(a)
                 div.appendChild(body)
+            }
+        }
+        // 遍历 div，标记一些样式
+        const childrens = div.children
+        for(i = 0; i < childrens.length; i++) {
+            // 给所有的 lvo 的下一个 lvt 添加 rad-top，上一个 lvt 增加 rad-bot
+            if(childrens[i].className.indexOf('lvo') >= 0) {
+                if(childrens[i+1] && childrens[i+1].className.indexOf('lvt') >= 0) {
+                    childrens[i+1].classList.add('rad-top')
+                }
+                if(childrens[i-1] && childrens[i-1].className.indexOf('lvt') >= 0) {
+                    childrens[i-1].classList.add('rad-bot')
+                }
             }
         }
         // 添加
@@ -290,7 +303,7 @@ function createLinkView() {
     }
 }
 
-function showhList(id, updateAll = true) {
+function showhList(id, updateAll, hover = false) {
     const list = document.getElementById('content-body').childNodes
     let passHidden = 0
     for(let i=0; i<list.length; i++) {
@@ -298,34 +311,40 @@ function showhList(id, updateAll = true) {
         if(id === item.dataset.id) {
             item.classList.add('select')
             item.classList.remove('setsmall')
+            
+            const lvoList = []
             if(item.className.indexOf('lvt') >= 0) {
                 // H2 需要向前寻找它的 H1
                 // 同时将路过的 H2 全部展开
                 for(let j=i-1; j>=0; j--) {
                     if(list[j].className.indexOf('lvo') >= 0) {
                         list[j].classList.add('select')
-                        list[j+1].classList.add('rad-top')
                         break   // 找到了就可以退出了
                     } else {
-                        list[j].classList.remove('setsmall')
+                        // 插入到 lvoList 的前面
+                        lvoList.unshift(list[j])
                     }
                 }
             }
             // 向下寻找 H1 将路过的 H2 展开
             for (let j = i + 1; j < list.length; j++) {
                 if (list[j].className.indexOf('lvo') >= 0) {
-                    list[j - 1].classList.add('rad-bot')
                     break
                 } else {
-                    list[j].classList.remove('setsmall')
+                    // 插入到 lvoList 的后面
+                    lvoList.push(list[j])
                     // 统计个数以跳过下面的循环
                     passHidden++
                 }
+            }
+            for(let j=0; j<lvoList.length; j++) {
+                lvoList[j].classList.remove('setsmall')
             }
         } else {
             if (updateAll) {
                 item.classList.remove('select')
                 if (item.className.indexOf('lvt') >= 0) {
+                    item.classList.remove('hover-show')
                     if (passHidden != 0) {
                         passHidden--
                     } else {
