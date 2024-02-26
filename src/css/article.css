@@ -805,18 +805,16 @@ body {
     width: calc(100% - 20px);
 }
 .article-main pre[class*=language-] > code {
-    background: var(--color-card) !important;
-    background-size: 3em 3em !important;
+    font-family: sans-serif,monospace,"Fira Code" !important;
     background-origin: content-box !important;
+    background: var(--color-card) !important;
     background-attachment: local !important;
-    display: block !important;
     padding: 10px 20px 10px 4em !important;
-    margin: 0 !important;
     border-radius: 0 0 7px 7px !important;
+    background-size: 3em 3em !important;
     color: var(--color-font) !important;
-    font-size: 0.9rem;
-}
-.article-main pre[class*=language-] > code > span {
+    display: block !important;
+    margin: 0 !important;
     font-size: 0.9rem;
 }
 .line-numbers .line-numbers-rows {
