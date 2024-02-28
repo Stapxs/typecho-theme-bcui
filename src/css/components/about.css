@@ -58,3 +58,15 @@
     padding: 3px 10px;
     font-size: 0.7rem;
 }
+
+@media (max-width: 992px) {
+    .ab-card {
+        flex-direction: column;
+    }
+    .ab-base {
+        margin-bottom: 20px;
+        margin-right: 0;
+        max-width: 100%;
+        width: 100%;
+    }
+}
