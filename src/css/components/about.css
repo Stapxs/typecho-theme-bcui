@@ -70,3 +70,95 @@
         width: 100%;
     }
 }
+
+.social {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+}
+.social a {
+    background: var(--color-card-1);
+    border-radius: 100%;
+    width: 35px;
+    height: 35px;
+    padding: 5px 10px;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+.social svg {
+    fill: var(--color-font-1);
+    height: 15px;
+    width: 15px;
+}
+
+.devices {
+    box-shadow: none !important;
+    background: transparent;
+    margin-top: 20px;
+}
+.ss-card header > span {
+    color: var(--color-font-2);
+    font-size: 0.8rem;
+    margin-left: 10px;
+}
+.devices > div {
+    flex-wrap: wrap;
+    display: flex;
+}
+
+.device {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 40px 20px;
+    margin-right: 10px;
+    display: flex;
+    width: 165px;
+}
+.device > svg {
+    fill: var(--color-main);
+    margin-bottom: 20px;
+    height: 40px;
+    width: 40px;
+}
+.device > span {
+    color: var(--color-font-2);
+    font-size: 0.8rem;
+}
+.device > a {
+    color: var(--color-font);
+    font-weight: normal;
+    text-align: center;
+    text-wrap: nowrap;
+}
+.device > div {
+    width: calc(100% + 40px);
+    border-radius: 0 0 7px 7px;
+    background: var(--color-card-1);
+    margin-bottom: -40px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.device-info {
+    text-overflow: ellipsis;
+    padding: 3px 3px;
+    overflow: hidden;
+}
+.device-info > svg {
+    width: 16px;
+    height: 11px;
+}
+.device-info.on {
+    display: block;
+}
+.device-info.off {
+    display: none;
+}
+.device-info > a,
+.device-info > span {
+    font-size: 0.7rem;
+    text-wrap: nowrap;
+}
