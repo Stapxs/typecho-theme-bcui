@@ -66,8 +66,15 @@
                         href="<?php $pages->permalink(); ?>"><?php $pages->title(); ?></a>
                 <?php endwhile; ?>
             </div>
-            <form class="form-inline my-2 my-lg-0" id="search" method="post" action="<?php $this->options->siteUrl(); ?>" role="search">
-                <input class="form-control mr-sm-2 bar-search" type="text" id="s" name="s" class="text" placeholder="搜索" aria-label="搜索">
+            <form class="form-inline my-2 my-lg-0 bar-right" id="search" method="post" action="<?php $this->options->siteUrl(); ?>" role="search">
+                <div class="bar-info">
+                    <div><svg id="search-icon" class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></svg></div>
+                    <input id="search-input" class="form-control mr-sm-2 bar-search hidden" type="text" id="s" name="s" class="text" placeholder="搜索" aria-label="搜索">
+                    <div><a href="<?php $this->options->feedUrl() ?>"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"/></svg></a></div>
+                    <?php if(Typecho_Widget::widget('Widget_Options')->umami_publish != null): ?>
+                    <div><a href="<?php Typecho_Widget::widget('Widget_Options')->umami_publish(); ?>" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M32 32c17.7 0 32 14.3 32 32V400c0 8.8 7.2 16 16 16H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H80c-44.2 0-80-35.8-80-80V64C0 46.3 14.3 32 32 32zM160 224c17.7 0 32 14.3 32 32v64c0 17.7-14.3 32-32 32s-32-14.3-32-32V256c0-17.7 14.3-32 32-32zm128-64V320c0 17.7-14.3 32-32 32s-32-14.3-32-32V160c0-17.7 14.3-32 32-32s32 14.3 32 32zm64 32c17.7 0 32 14.3 32 32v96c0 17.7-14.3 32-32 32s-32-14.3-32-32V224c0-17.7 14.3-32 32-32zM480 96V320c0 17.7-14.3 32-32 32s-32-14.3-32-32V96c0-17.7 14.3-32 32-32s32 14.3 32 32z"/></svg></a></div>
+                    <?php endif; ?>
+                </div>
                 <div id="user-avatar" class="avatar" title="<?php $this->user->hasLogin() ? $this->user->screenName() : '登录'; ?>" onclick="jumpTo('<?php $this->options->adminUrl(); ?>', true)">
                 <?php if($this->user->hasLogin()): ?>
                     <?php echo $this->user->gravatar(330, 'G', NULL, NULL) ?>

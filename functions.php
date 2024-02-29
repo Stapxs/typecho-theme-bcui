@@ -154,9 +154,18 @@ function themeConfig($form)
         null,
         null,
         _t('umami 代码'),
-        _t('umami 站点统计的配置，这是个开源的站点统计工具，可以自己搭建；主题目前支持它，要启用请填写 umami 代码。')
+        _t('umami 站点统计的配置，这是个开源的站点统计工具，可以自己搭建；要启用请填写完整的跟踪代码。')
     );
     $form->addInput($umami);
+
+    $umami_publish = new Typecho_Widget_Helper_Form_Element_Text(
+        'umami_publish',
+        null,
+        null,
+        _t('umami 公开链接'),
+        _t('umami 站点统计公开链接，如果你想要展示出来的话，可以填写。')
+    );
+    $form->addInput($umami_publish);
 }
 
 /*
