@@ -19,7 +19,21 @@ document.addEventListener("DOMContentLoaded", () => {
             anaBody.innerText = url
         }
     }
+    // 绑定一些事件
+    document.getElementById('search-icon').addEventListener('click', () => {
+        const search = document.getElementById('search-input')
+        // 如果它有 hidden 就去掉，否则加回去
+        if (search.classList.contains('hidden')) {
+            search.classList.remove('hidden')
+        } else {
+            search.classList.add('hidden')
+        }
+    })
 })
+
+function showSearch() {
+    
+}
 
 function jumpTo(url, newPage = false) {
     if(newPage) {
