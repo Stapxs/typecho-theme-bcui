@@ -49,7 +49,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
                 <div>
                     <div class="ss-card device">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M128 32C92.7 32 64 60.7 64 96V352h64V96H512V352h64V96c0-35.3-28.7-64-64-64H128zM19.2 384C8.6 384 0 392.6 0 403.2C0 445.6 34.4 480 76.8 480H563.2c42.4 0 76.8-34.4 76.8-76.8c0-10.6-8.6-19.2-19.2-19.2H19.2z"/></svg>
-                        <span>Silicon M2 Pro</span>
+                        <span>M2 Pro</span>
                         <a>MacBook Pro<br>14"</a>
                         <div>
                             <div class="device-info"
@@ -144,7 +144,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
                     </div>
                     <div class="ss-card device">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M64 0C28.7 0 0 28.7 0 64V352c0 35.3 28.7 64 64 64H240l-10.7 32H160c-17.7 0-32 14.3-32 32s14.3 32 32 32H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H346.7L336 416H512c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64H64zM512 64V288H64V64H512z"/></svg>
-                        <span>Silicon M2</span>
+                        <span>M2</span>
                         <a>Mac mini<br>&nbsp;</a>
                     </div>
                     <div class="ss-card device">

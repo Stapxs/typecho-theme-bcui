@@ -12,6 +12,8 @@
             'author'   => _t('%s 发布的文章')
         ], '', ' - '); ?><?php $this->options->title(); ?></title>
 
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="favicon.ico">
     <link rel="stylesheet" href="<?php $this->options->themeUrl('src/bootstrap/css/bootstrap.min.css')?>">
     <link rel="stylesheet" href="<?php $this->options->themeUrl('src/font-awesome/css/font-awesome.min.css')?>">
 

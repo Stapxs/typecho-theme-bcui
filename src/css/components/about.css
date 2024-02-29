@@ -146,6 +146,7 @@
     text-overflow: ellipsis;
     padding: 3px 3px;
     overflow: hidden;
+    height: 30px;
 }
 .device-info > svg {
     width: 16px;
