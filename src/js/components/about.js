@@ -44,6 +44,7 @@ for (i = 0; i < devices.length; i++) {
     const data_replace = device.dataset.replace
     const device_unit = device.dataset.unit
     const false_value = device.dataset.false
+    const hidden = device.dataset.hidden
     if (device_id && device_value) {
         fetch(api + device_id)
             .then(res => res.json())
@@ -53,6 +54,13 @@ for (i = 0; i < devices.length; i++) {
                     let value = res[device_value]
                     if(value === undefined) {
                         value = res['attributes'][device_value]
+                    }
+                    // 判断隐藏条件
+                    if(hidden != undefined) {
+                        const reg = new RegExp(hidden)
+                        if(reg.test(value) || hidden == value) {
+                            device.style.display = 'none'
+                        }
                     }
                     // 存在文本需要显示
                     if(children.length == 2 && children[1].nodeName.toUpperCase() === 'SPAN') {

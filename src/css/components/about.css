@@ -12,16 +12,15 @@
 
 .ab-base {
     margin-right: 20px;
-    display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 30%;
-    padding: 40px 20px;
+    max-width: 35%;
+    padding: 40px;
+    display: flex;
 }
 .ab-base img {
     border-radius: 100%;
     transform: none;
-    height: 60px;
     width: 60px;
     margin: 0;
 }
@@ -149,8 +148,9 @@
     height: 30px;
 }
 .device-info > svg {
-    width: 16px;
+    fill: var(--color-font);
     height: 11px;
+    width: 16px;
 }
 .device-info.on {
     display: block;
@@ -162,4 +162,38 @@
 .device-info > span {
     font-size: 0.7rem;
     text-wrap: nowrap;
+}
+
+.ss-doing {
+    flex-direction: column;
+    align-items: center;
+    display: flex;
+    width: 100%;
+}
+.ss-doing > span {
+    color: var(--color-font-2);
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+.ss-doing > div {
+    background: var(--color-card-1);
+    box-shadow: none !important;
+    justify-content: center;
+    margin-bottom: 10px;
+    align-items: center;
+    display: flex;
+    height: 45px;
+    width: 100%;
+}
+.ss-doing > div svg {
+    fill: var(--color-main);
+    margin-right: 10px;
+    height: 20px;
+    width: 20px;
+}
+.ss-doing > div span {
+    color: var(--color-main);
+    font-size: 0.9rem;
+    margin-left: 10px;
+    font-weight: 200;
 }
