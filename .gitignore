@@ -1,0 +1,7 @@
+plugins/
+themes/*
+!themes/typecho-theme-bcui/
+!themes/typecho-theme-bcui/**
+
+.DS_Store
+Thumbs.db
