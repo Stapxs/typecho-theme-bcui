@@ -1,45 +1,59 @@
 <?php
 /**
- * Default theme for Typecho
+ * Border Card UI Theme for Typecho
  *
- * @package Typecho Replica Theme
- * @author Typecho Team
- * @version 1.2
- * @link http://typecho.org
+ * @package Border Card UI Theme
+ * @author Stapx Steve
+ * @version 1.0
+ * @link https://github.com/Stapxs/typecho-theme-bcui
  */
 
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
-$this->need('header.php');
+    $this->need('header.php');
 ?>
 
 <div class="col-mb-12 col-8" id="main" role="main">
-    <?php while ($this->next()): ?>
-        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-            <h2 class="post-title" itemprop="name headline">
-                <a itemprop="url"
-                   href="<?php $this->permalink() ?>"><?php $this->title() ?></a>
-            </h2>
-            <ul class="post-meta">
-                <li itemprop="author" itemscope itemtype="http://schema.org/Person"><?php _e('作者: '); ?><a
-                        itemprop="name" href="<?php $this->author->permalink(); ?>"
-                        rel="author"><?php $this->author(); ?></a></li>
-                <li><?php _e('时间: '); ?>
-                    <time datetime="<?php $this->date('c'); ?>" itemprop="datePublished"><?php $this->date(); ?></time>
-                </li>
-                <li><?php _e('分类: '); ?><?php $this->category(','); ?></li>
-                <li itemprop="interactionCount">
-                    <a itemprop="discussionUrl"
-                       href="<?php $this->permalink() ?>#comments"><?php $this->commentsNum('评论', '1 条评论', '%d 条评论'); ?></a>
-                </li>
-            </ul>
-            <div class="post-content" itemprop="articleBody">
-                <?php $this->content('- 阅读剩余部分 -'); ?>
-            </div>
-        </article>
-    <?php endwhile; ?>
+    <?php
+        $posts = [];
+        while ($this->next()) {
+            $posts[] = [
+                'cid' => $this->cid,
+                'title' => $this->title,
+                'description' => $this->text,
+                'permalink' => $this->permalink,
+                'author' => [
+                    'name' => $this->author->screenName,
+                    'url' => $this->author->permalink
+                ],
+                'date' => $this->date,
+                'categories' => $this->categories,
+                'tags' => $this->tags,
+                'commentsNum' => $this->commentsNum
+            ];
+        };
+    ?>
+
+    <div id="list-view" class="list-view"></div>
+
+    <style>
+        .list-view {
+            margin: 0 auto;
+            width: 80%;
+        }
+    </style>
+
+    <script>
+        window.__POSTS__ = <?= json_encode($posts); ?>;
+    </script>
+
+    <?php if ($this->options->debug): ?>
+    <script type="module" src="http://localhost:5173/src/main.js"></script>
+    <?php else: ?>
+    <script src="<?php $this->options->themeUrl('assets/index.js'); ?>"></script>
+    <?php endif ?>
 
     <?php $this->pageNav('&laquo; 前一页', '后一页 &raquo;'); ?>
-</div><!-- end #main-->
+</div>
 
-<?php $this->need('sidebar.php'); ?>
+
 <?php $this->need('footer.php'); ?>

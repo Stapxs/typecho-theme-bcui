@@ -4,11 +4,11 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 function themeConfig($form)
 {
     $logoUrl = new \Typecho\Widget\Helper\Form\Element\Text(
-        'logoUrl',
+        'topImage',
         null,
         null,
-        _t('站点 LOGO 地址'),
-        _t('在这里填入一个图片 URL 地址, 以在网站标题前加上一个 LOGO')
+        _t('顶栏图片'),
+        _t('你可以在此处填写顶栏图片的链接')
     );
 
     $form->addInput($logoUrl);
@@ -27,6 +27,19 @@ function themeConfig($form)
     );
 
     $form->addInput($sidebarBlock->multiMode());
+
+    $debug = new \Typecho\Widget\Helper\Form\Element\Radio(
+        'debug',
+        [
+            '0' => _t('关闭'),
+            '1' => _t('开启')
+        ],
+        '0',
+        _t('调试模式'),
+        _t('开启调试开发模式')
+    );
+
+    $form->addInput($debug);
 }
 
 /*

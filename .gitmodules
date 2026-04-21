@@ -1,0 +1,4 @@
+[submodule "themes/typecho-theme-bcui/bcui"]
+	path = themes/typecho-theme-bcui/bcui
+	url = https://github.com/Stapxs/Border-Card-UI
+	branch = js-bcui

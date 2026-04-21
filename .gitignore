@@ -2,6 +2,7 @@ plugins/
 themes/*
 !themes/typecho-theme-bcui/
 !themes/typecho-theme-bcui/**
+themes/typecho-theme-bcui/assets/**
 
 .DS_Store
 Thumbs.db

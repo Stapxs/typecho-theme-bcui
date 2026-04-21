@@ -1,0 +1,39 @@
+:root {
+    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+    color-scheme: light dark;
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+    scroll-behavior: smooth;
+    text-autospace: normal;
+    user-select: none;
+    background: var(--color-bg);
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.notice-card {
+    background: var(--color-card-1);
+    padding: 15px 50px;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+    margin: 0 auto;
+    display: flex;
+}
+.notice-card svg {
+    width: 30px;
+    height: 30px;
+}
+.notice-card span {
+    margin-top: 10px;
+    font-size: 0.8rem;
+}
